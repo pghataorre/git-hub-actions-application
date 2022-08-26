@@ -1,5 +1,5 @@
 name: first-work-flow
-on: [pull_request]
+on: [push]
 jobs:
   eslint:
     name: Running ES lint
