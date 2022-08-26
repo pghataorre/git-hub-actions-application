@@ -1,4 +1,4 @@
-name: first-work-flow
+name: ES Linting
 on: [push]
 jobs:
   eslint:
