@@ -8,7 +8,7 @@ function App() {
     <div className="App">
     <h1>PERMY.CO.UK - THIS GUY</h1>
     <div class="image-container">
-          <Images src={permyImage}/>
+        <Images src={permyImage}/>
     </div>
     </div>
   );
