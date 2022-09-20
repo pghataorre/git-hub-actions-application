@@ -6,10 +6,10 @@ import permyImage from './images/permy.jpg'
 function App() {
   return (
     <div className="App">
-    <h1>PERMY.CO.UK - THIS GUY</h1>
-    <div class="image-container">
-        <Images src={permyImage}/>
-    </div>
+      <h1>PERMY.CO.UK - THIS GUY</h1>
+      <div className="image-container">
+          <Images src={permyImage}/>
+      </div>
     </div>
   );
 }
