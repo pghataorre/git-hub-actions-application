@@ -1,21 +1,20 @@
 import React from 'react';
+import { Routes, Route } from 'react-router-dom';
 import './App.css';
-import Images from './components/Images/Images';
-import permyImage from './images/permy.jpg'
+import Default from './pages/Default';
+import Teams from './pages/Teams';
+import Header from './components/Header/Header';
 
-function App() {
+const App = () => {
   return (
     <div className="App">
-      <h1>PERMY.CO.UK - THIS GUY</h1>
-      <div className="image-container">
-          <Images 
-            src={permyImage}
-            testid="mainPagePermyImage"
-            altText="Permy"
-          />
-      </div>
+      <Header />
+      <Routes>
+        <Route index element={<Default />} />
+        <Route path="/teams" element={<Teams />} />
+        <Route path="*" element={<div>404! Not Found</div>} />
+      </Routes>
     </div>
   );
 }
-
 export default App;
