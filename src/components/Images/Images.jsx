@@ -1,5 +1,5 @@
 import React from 'react';
 
-const Images = ({src}) => (<img src={src} alt="Welcome" />);
+const Images = ({src, testid, altText}) => (<img src={src} data-testid={testid} alt={altText} />);
 
 export default Images;
