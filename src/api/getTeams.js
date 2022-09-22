@@ -1,6 +1,7 @@
 const getTeams = async () => {
 
-  const res = await fetch('https://hv19rmo72i.execute-api.us-east-1.amazonaws.com/live/teams', { 
+
+  const res = await fetch('https://hxdgmqowq2.execute-api.eu-west-2.amazonaws.com/live/teams', { 
     "mode": "cors",
     "headers": {
       "Access-Control-Allow-Origin" : "https://www.permy.co.uk",
