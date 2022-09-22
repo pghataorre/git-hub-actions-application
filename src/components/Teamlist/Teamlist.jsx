@@ -18,6 +18,8 @@ const TeamList = () => {
         console.error('error ===== ', error);
       })
 
+      console.log('TEAMS  ===== ', teams);
+
   },[]);
 
 
