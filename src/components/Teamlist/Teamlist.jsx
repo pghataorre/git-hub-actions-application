@@ -6,29 +6,28 @@ const TeamList = () => {
   const [teams ,setTeams] = useState({});
 
   useEffect(() => {
-    (async () => {
-      try {
-        const teamRes = await getTeams();
-        debugger;
-        setTeams(teamRes);
 
-      } catch(e) {
+    getTeams()
+      .then((res) => {
+        if (res.ok) {
+          const response = res.json();
+          setTeams(response);
+        }
+      })
+      .catch((error) => {
         setError(true);
-      }
-
-    })();
-
-    console.log('error ------ ', error);
+        console.error('error ===== ', error);
+      })
 
   },[teams]);
 
 
-
   return (
     <div className="teams-listing">
-      <ul>
-        
-      </ul>
+      {error 
+        ? (<><p>An error has occurred please try again later</p></>)
+        : (<ul><li>list</li></ul>)
+      }
     </div>
   );
 }
