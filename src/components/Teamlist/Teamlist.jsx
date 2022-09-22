@@ -1,5 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import getTeams from '../../api/getTeams';
+import './Teamlist.css';
 
 const TeamList = () => {
   const [error, setError] = useState(false);
@@ -36,9 +37,9 @@ const TeamListing = ({teams}) => {
   });
 
   return (
-    <ul>
+    <ol className="full-team-list">
       {teamList}
-    </ul>
+    </ol>
   );
 }
 

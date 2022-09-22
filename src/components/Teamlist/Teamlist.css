@@ -1,0 +1,13 @@
+.teams-listing {
+  display: flex;
+  justify-content: center;
+}
+
+.full-team-list {
+  width: 70%;
+  text-align: left;
+}
+
+.full-team-list li {
+  margin-bottom: 20px;
+}
