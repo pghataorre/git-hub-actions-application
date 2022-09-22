@@ -8,28 +8,37 @@ const TeamList = () => {
   useEffect(() => {
     getTeams()
       .then((res) => {
-        if (res.ok) {
-          const response = res.json();
-          setTeams(response);
-        }
+        return res.json();
+      }).then((data) => {
+        setTeams(data);
       })
       .catch((error) => {
         setError(true);
         console.error('error ===== ', error);
       })
-
-      console.log('TEAMS  ===== ', teams);
-
   },[]);
-
 
   return (
     <div className="teams-listing">
       {error 
         ? (<><p>An error has occurred please try again later</p></>)
-        : (<ul><li>list</li></ul>)
+        : (<TeamListing teams={teams} />)
       }
     </div>
+  );
+}
+
+const TeamListing = ({teams}) => {
+  if (Object.keys(teams).length === 0) return; 
+
+  const teamList = teams.premierLeague.map((team) =>{
+    return (<li>{team.name}</li>)
+  });
+
+  return (
+    <ul>
+      {teamList}
+    </ul>
   );
 }
 
