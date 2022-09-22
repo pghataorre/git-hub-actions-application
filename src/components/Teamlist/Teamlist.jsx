@@ -6,7 +6,6 @@ const TeamList = () => {
   const [teams ,setTeams] = useState({});
 
   useEffect(() => {
-
     getTeams()
       .then((res) => {
         if (res.ok) {
