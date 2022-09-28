@@ -12,7 +12,7 @@ const TeamList = () => {
         return res.json();
       }).then((data) => {
         console.log('1. data == ', data)
-        if (data.items.length === 0) {
+        if (!data) {
           console.log('no data');
           setError(true);
           return [];
