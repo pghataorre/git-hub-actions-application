@@ -38,7 +38,10 @@ const TeamListing = ({teams}) => {
   if (Object.keys(teams).length === 0) return; 
 
   const teamList = teams.Items.map((team) =>{
-    return (<li>{team.name}</li>)
+    return (<li>
+      <span><img src={`/${team.logo}`} alt="team shields"/></span>
+      {team.name}
+    </li>)
   });
 
   return (
