@@ -11,7 +11,12 @@ const TeamList = () => {
       .then((res) => {
         return res.json();
       }).then((data) => {
-        setTeams(data);
+        if (data.items.length === 0) {
+          setError(true);
+          return [];
+        } else {
+          setTeams(data);
+        }
       })
       .catch((error) => {
         setError(true);
@@ -32,7 +37,7 @@ const TeamList = () => {
 const TeamListing = ({teams}) => {
   if (Object.keys(teams).length === 0) return; 
 
-  const teamList = teams.premierLeague.map((team) =>{
+  const teamList = teams.Items.map((team) =>{
     return (<li>{team.name}</li>)
   });
 
