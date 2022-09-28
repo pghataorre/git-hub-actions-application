@@ -9,5 +9,19 @@
 }
 
 .full-team-list li {
+  display: flex;
+  font-size: 24px;
   margin-bottom: 20px;
+  align-items: center;
+  background: url('/images/noShield.png') 0 0;
+}
+
+li .team-shield {
+  margin-right: 20px;
+}
+
+li .team-shield img {
+
+  width: 80px;
+  height: 80px;
 }
