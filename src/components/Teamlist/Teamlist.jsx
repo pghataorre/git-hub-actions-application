@@ -11,12 +11,14 @@ const TeamList = () => {
       .then((res) => {
         return res.json();
       }).then((data) => {
+        console.log('1. data == ', data)
         if (data.items.length === 0) {
+          console.log('no data');
           setError(true);
           return [];
-        } else {
+        } 
+          console.log('2. data ======= ', data);
           setTeams(data);
-        }
       })
       .catch((error) => {
         setError(true);
