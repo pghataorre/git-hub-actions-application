@@ -1,28 +1,9 @@
-import React, {useEffect, useState} from 'react';
-import getTeams from '../../api/getTeams';
+import React, {useContext} from 'react';
+import { TeamsContext } from '../../context/teamsContext';
 import './Teamlist.css';
 
 const TeamList = () => {
-  const [error, setError] = useState(false);
-  const [teams ,setTeams] = useState({});
-
-  useEffect(() => {
-    getTeams()
-      .then((res) => {
-        return res.json();
-      }).then((data) => {
-        if (!data) {
-          console.log('no data');
-          setError(true);
-          return [];
-        } 
-          setTeams(data);
-      })
-      .catch((error) => {
-        setError(true);
-        console.error('error ===== ', error);
-      })
-  },[]);
+const {teams, error} = useContext(TeamsContext); 
 
   return (
     <div className="teams-listing">
