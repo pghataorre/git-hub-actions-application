@@ -1,6 +1,7 @@
 import React, { useContext, useRef, useState } from 'react';
 import { TeamsContext } from '../../context/teamsContext';
-import addManager from '../../api/addManager';;
+import addManager from '../../api/addManager';
+import ApiMessage from '../ApiStateMessages/ApiStateMessages';
 
 
 const ManagerForm = ({teams}) => {
@@ -8,6 +9,7 @@ const ManagerForm = ({teams}) => {
   const managerTeam = useRef();
   const [isCurrentManagerSelected, setIsCurrentManagerSelected] = useState(false);
   const [hasPosted, setHasPosted] = useState(false);
+  const [hasPostError, setHasPostError] = useState(false);
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -21,10 +23,17 @@ const ManagerForm = ({teams}) => {
     addManager(body).then((res) => {
       if (res.ok) {
         setHasPosted(true);
+        setHasPostError(false);
+        return;
       }
+
+      setHasPosted(false);
+      setHasPostError(true);
     })
     .catch((error) => {
-      console.log('error ===== ', error);
+      console.log(error);
+      setHasPostError(true);
+      setHasPosted(false);
     });
   }
 
@@ -41,7 +50,8 @@ const ManagerForm = ({teams}) => {
 
   return (
     <div className="manager-form">
-      { hasPosted ? (<h3 className="success">Manager has been added.</h3>) : (<></>) }
+      <ApiMessage showMessage={hasPosted} cssClass='success' message='Manager has been added.'/>
+      <ApiMessage showMessage={hasPostError} cssClass='error' message='Sorry there has been an error'/>
       <form onSubmit={(event) => handleSubmit(event) }>
         <label htmlFor="manager-name">Name of the football manager </label>
           <input ref={managerName} type="text" id="manager-name" placeholder="Manager name" />
@@ -57,7 +67,6 @@ const ManagerForm = ({teams}) => {
           <span className="radio-text">Yes - this is the current manager</span> 
         </label>
 
-        <label htmlFor="submit-manager-form"></label>
         <button type="submit" id="submit-manager-form">Add Manager</button>
       </form>
     </div>

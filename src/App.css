@@ -53,8 +53,13 @@ ul {
   width: 70%;
 }
 
+.error,
 .success {
   padding: 10px;
   background-color: lightgreen;
   border-radius: 8px;
+}
+
+.error {
+  background-color: lightcoral;
 }
