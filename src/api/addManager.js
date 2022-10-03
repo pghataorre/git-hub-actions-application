@@ -1,8 +1,6 @@
 import config from '../config/config';
 
 const addManager = async (body) => {
-
-  debugger;
   return await fetch(`${config.apiUrl}/addManager`, {
     method: "POST",
     headers: {
