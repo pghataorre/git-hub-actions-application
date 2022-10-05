@@ -45,6 +45,7 @@ ul {
   list-style-type: none;
 }
 
+.manager-listing-page,
 .teams-page,
 .default-page,
 .admin-page {

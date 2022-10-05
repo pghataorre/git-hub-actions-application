@@ -4,6 +4,7 @@ import './App.css';
 import Default from './pages/Default';
 import Teams from './pages/Teams';
 import AddManager from './pages/Addmanager';
+import Managers from './pages/Managers';
 import Header from './components/Header/Header';
 import { TeamsContext } from './context/teamsContext';
 import getTeams from './api/getTeams';
@@ -47,6 +48,7 @@ const App = () => {
           <Route index element={<Default />} />
           <Route path="/addmanager" element={<AddManager />} />
           <Route path="/teams" element={<Teams />} />
+          <Route path="/managers" element={<Managers />} />
           <Route path="*" element={<div>404! Not Found</div>} />
         </Routes>
       </TeamsContext.Provider>
