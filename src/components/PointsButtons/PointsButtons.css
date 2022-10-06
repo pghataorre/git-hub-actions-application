@@ -1,0 +1,33 @@
+.score-buttons {
+  justify-content: right;
+}
+
+.score-buttons .points-button {
+  width: 50px;
+  border-radius: 50%;
+  border: 2px solid  darkgray;
+  font-size: 24px;
+  margin-right: 20px;
+  opacity: 1;
+  padding: 10px;
+  text-align: center;
+  color: #fff;
+  font-weight: bold;
+}
+
+.score-buttons .points-button:hover {
+  opacity: .6;
+}
+
+.score-buttons .win {
+  background-color: lightgreen;
+}
+
+.score-buttons .draw {
+  background-color: orange;
+}
+
+.score-buttons .loss {
+  background-color: lightcoral;
+}
+

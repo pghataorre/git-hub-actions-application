@@ -11,17 +11,25 @@
 .full-team-list li {
   display: flex;
   font-size: 24px;
-  margin-bottom: 20px;
+  padding: 20px 0 20px 0;
   align-items: center;
+  justify-content: space-between;
   background: url('/images/noShield.png') 0 0;
+  border-bottom: 1px solid lightgray;
 }
 
 li .team-shield {
   margin-right: 20px;
 }
 
+
+li .team-name {
+  flex-grow: 1;
+  justify-content: flex-start;
+}
+
 li .team-shield img {
 
-  width: 80px;
-  height: 80px;
+  width: 60px;
+  height: 60px;
 }

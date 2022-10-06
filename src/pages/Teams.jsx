@@ -7,7 +7,7 @@ const Teams = () => {
     <div className="teams-page">
       <h1>Football Team from an api call</h1>
       <p>A test page that calls a list of teams from a LAMBDA function</p>
-      <TeamList />
+      <TeamList showButtons={false}/>
     </div>
   );
 }
