@@ -18,6 +18,10 @@
   border-bottom: 1px solid lightgray;
 }
 
+.full-team-list li:last-child{
+    border-bottom: none;
+}
+
 li .team-shield {
   margin-right: 20px;
 }
@@ -26,6 +30,11 @@ li .team-shield {
 li .team-name {
   flex-grow: 1;
   justify-content: flex-start;
+}
+
+li .team-points {
+  font-weight: bold;
+  font-size: 24px;
 }
 
 li .team-shield img {

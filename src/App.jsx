@@ -26,6 +26,9 @@ const App = () => {
           return [];
         } 
           setDataReady(true);
+          const sortedByTeamPoints= data.Items.sort((a, b) => b.results[0].points - a.results[0].points); 
+
+          data.Items = sortedByTeamPoints;
           setTeams(data);
       })
       .catch((error) => {
