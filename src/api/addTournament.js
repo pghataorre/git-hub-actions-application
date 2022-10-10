@@ -1,8 +1,6 @@
 import config from '../config/config';
 
 const addTournament = async (body) => {
-  debugger;
-
   return await fetch(`${config.apiUrl}/addTournament`, {
     method: "POST",
     headers: {
