@@ -4,6 +4,7 @@ import './App.css';
 import Default from './pages/Default';
 import Teams from './pages/Teams';
 import AddManager from './pages/Addmanager';
+import AddTournament from './pages/AddTournament';
 import Managers from './pages/Managers';
 import Addpoints from './pages/AddPoints';
 import Header from './components/Header/Header';
@@ -54,6 +55,7 @@ const App = () => {
           <Route path="/teams" element={<Teams />} />
           <Route path="/managers" element={<Managers />} />
           <Route path="/addpoints" element={<Addpoints />} />
+          <Route path="/addtournament" element={<AddTournament />} />
           <Route path="*" element={<div>404! Not Found</div>} />
         </Routes>
       </TeamsContext.Provider>
