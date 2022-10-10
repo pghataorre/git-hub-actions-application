@@ -1,21 +1,23 @@
 import React, { useRef, useState } from 'react';
 import addTournament from '../../api/addTournament';
+import TournamentList from '../TournamentList/TournamentList';
 import ApiMessage from '../ApiStateMessages/ApiStateMessages';
-
 
 const TournamentForm = () => {
   const tournamentName = useRef();
   const [hasPosted, setHasPosted] = useState(false);
   const [hasPostError, setHasPostError] = useState(false);
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
 
-    const body = {
-      tournamentName: tournamentName.current.value || ''
-    }
+    try {
+      const body = {
+        tournamentName: tournamentName.current.value || '-1'
+      };
 
-    addTournament(body).then((res) => {
+      const res = await addTournament(body);
+
       if (res.ok) {
         setHasPosted(true);
         setHasPostError(false);
@@ -24,16 +26,15 @@ const TournamentForm = () => {
 
       setHasPosted(false);
       setHasPostError(true);
-    })
-    .catch((error) => {
+    } catch(error) {
       console.log(error);
       setHasPostError(true);
       setHasPosted(false);
-    });
+    }
   }
   
   return (
-    <div className="manager-form">
+    <div className="tournament-form">
       <ApiMessage showMessage={hasPosted} cssClass='success' message='Manager has been added.'/>
       <ApiMessage showMessage={hasPostError} cssClass='error' message='Sorry there has been an error'/>
       <form onSubmit={(event) => handleSubmit(event) }>
@@ -43,6 +44,9 @@ const TournamentForm = () => {
           <button type="submit" id="submit-tournament-form">Add Tournament</button>
         </label>
       </form>
+      <div>
+        <TournamentList />
+      </div>
     </div>
   )
 }

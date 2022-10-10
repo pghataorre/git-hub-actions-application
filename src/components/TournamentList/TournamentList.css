@@ -1,0 +1,19 @@
+.tournament-listing {
+  display: flex;
+  justify-content: center;
+}
+
+.full-tournament-list {
+  text-align: left;
+}
+
+.full-tournament-list li {
+  display: flex;
+  font-size: 24px;
+  margin-bottom: 20px;
+  align-items: center;
+  padding: 15px;
+  background-color: lightgray;
+  border-radius: 8px;
+}
+
