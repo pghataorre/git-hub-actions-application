@@ -1,27 +1,11 @@
-import React, {useEffect, useState} from 'react';
-import getTournamentsApi from './getTournamentApi';
+import React, { useContext } from 'react';
+import { TeamsContext } from '../../context/teamsContext';
 import './TournamentList.css';
 
 const TournamentList = () => {
-  const [tournaments, setTournaments] = useState({});
-
-  useEffect(() => {
-    const getData = async () => {
-      const res = await getTournamentsApi();
-
-      if (!res) {
-        setTournaments({})
-      } else {
-        setTournaments(res);
-      }
-    }
-
-    getData();
-
-  }, [tournaments.Items]);
-
+  const {tournaments, tournamentDataLoaded } = useContext(TeamsContext);
  
-  if(Object.keys(tournaments).length === 0) return;
+  if(!tournamentDataLoaded) return;
   if(tournaments.Items.length === 0) return;
  
   const Tournaments = (tournaments) => {

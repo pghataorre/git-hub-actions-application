@@ -1,6 +1,6 @@
 import React, { useRef, useState, useContext } from 'react';
 import { TeamsContext } from '../../context/teamsContext';
-import TeamList from '../Teamlist/Teamlist';
+import TeamListNoLeague from '../TeamListNoLeague/TeamListNoLeague';
 import addTeam from '../../api/addTeam';
 import ApiMessage from '../ApiStateMessages/ApiStateMessages';
 
@@ -65,7 +65,7 @@ const TeamForm = () => {
         </label>
       </form>
       <div>
-        <TeamList />
+        <TeamListNoLeague />
       </div>
     </div>
   )

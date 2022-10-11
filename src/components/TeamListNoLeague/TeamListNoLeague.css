@@ -1,0 +1,14 @@
+.full-team-no-league-list {
+  text-align: left;
+}
+
+.full-team-no-league-list li {
+  display: flex;
+  font-size: 24px;
+  margin-bottom: 20px;
+  align-items: center;
+  padding: 15px;
+  background-color: lightgray;
+  border-radius: 8px;
+}
+
