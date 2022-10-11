@@ -3,6 +3,11 @@ import { TeamsContext } from '../../context/teamsContext';
 import TeamManagerList from '../TeamManagerList/TeamManagerList';
 import getTeamManagers from './getMangersApi';
 
+const ManagerListing = () => {
+  const {dataLoaded, teams} = useContext(TeamsContext);
+  return dataLoaded ? (<TeamsList teams={teams}/>) : (<><p>Loading ...</p></>)
+}
+
 const TeamsList = ({teams}) => {
   const [managerData, setManagerData] = useState({});
   const managerTeam = useRef();
@@ -30,19 +35,13 @@ const TeamsList = ({teams}) => {
       <label htmlFor="team-list">Please select a team for this manager</label>
       <select name="team-list" ref={managerTeam} onChange={(event) => handleSelect(event)}>
         <option value="-1">Please select a Team</option>
-        { TeamOptions(teams) }
+        { TeamOptions(teams.Items) }
       </select>
       <div>
         {setManagerData.length > 0 ? (<TeamManagerList managerData={managerData}/>) : (<></>)}
       </div>
     </div>
   )
-}
-
-const ManagerListing = () => {
-  const {dataReady, teams} = useContext(TeamsContext);
-
-  return dataReady ? (<TeamsList teams={teams.Items} />) : (<><p>Loading ...</p></>)
 }
 
 export default ManagerListing;

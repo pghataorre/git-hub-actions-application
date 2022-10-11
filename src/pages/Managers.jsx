@@ -1,8 +1,7 @@
 import React from 'react';
 import ManagerListing from '../components/ManagerListing/ManagerListing';
 
-
-const Teams = () => {
+const Managers = () => {
   return (
     <div className="teams-page">
       <h1>Football Team Managers</h1>
@@ -12,4 +11,4 @@ const Teams = () => {
   );
 }
 
-export default Teams;
+export default Managers;

@@ -5,44 +5,55 @@ import Default from './pages/Default';
 import Teams from './pages/Teams';
 import AddManager from './pages/Addmanager';
 import AddTournament from './pages/AddTournament';
+import AddTeam from './pages/AddTeam';
 import Managers from './pages/Managers';
 import Addpoints from './pages/AddPoints';
 import Header from './components/Header/Header';
 import { TeamsContext } from './context/teamsContext';
-import getTeams from './api/getTeams';
+import getTeamsApi from './contextApi/getTeamsApi';
+import getTournament from './contextApi/getTournamentApi';
 
 const App = () => {
   const [error, setError] = useState(false);
   const [teams ,setTeams] = useState({});
-  const [dataReady ,setDataReady] = useState(false);
+  const [tournaments ,setTournaments] = useState({});
+  const [dataLoaded, setLoadedData] = useState(false);
+  const [tournamentDataLoaded, setTournamentDataLoaded] = useState(false)
 
   useEffect(() => {
-    getTeams()
-      .then((res) => {
-        return res.json();
-      }).then((data) => {
-        if (!data) {
-          console.log('no data');
-          setError(true);
-          return [];
-        } 
-          setDataReady(true);
-          const sortedByTeamPoints= data.Items.sort((a, b) => b.results[0].points - a.results[0].points); 
 
-          data.Items = sortedByTeamPoints;
-          setTeams(data);
-      })
-      .catch((error) => {
+    (async () => {
+      const teamsData = await getTeamsApi();
+      
+      if (!teamsData) {
         setError(true);
-        console.error('error ===== ', error);
-      })
+      } else {
+        const sortedByTeamPoints= teamsData.Items.sort((a, b) => b.results[0].points - a.results[0].points); 
+        teamsData.Items = sortedByTeamPoints;
+        setLoadedData(true);
+        setTeams(teamsData);
+      }
+
+    })();
+
+    (async () => {
+      const tournamentData = await getTournament();
+      if (!tournamentData) {
+        setError(true);
+      } else {
+        setTournamentDataLoaded(true);
+        setTournaments(tournamentData);
+      }
+    })();
 
   },[]);
 
   const appData = {
     teams,
+    tournaments,
     error,
-    dataReady
+    dataLoaded,
+    tournamentDataLoaded
   }
 
   return (
@@ -56,6 +67,7 @@ const App = () => {
           <Route path="/managers" element={<Managers />} />
           <Route path="/addpoints" element={<Addpoints />} />
           <Route path="/addtournament" element={<AddTournament />} />
+          <Route path="/addTeam" element={<AddTeam />} />
           <Route path="*" element={<div>404! Not Found</div>} />
         </Routes>
       </TeamsContext.Provider>

@@ -74,8 +74,8 @@ const ManagerForm = ({teams}) => {
 }
 
 const AddManagerForm = () => {
-  const {teams, dataReady} = useContext(TeamsContext);
-  return dataReady ? (<ManagerForm teams={teams}/>) : (<><p>Loading ...</p></>)
+  const {teams, dataLoaded} = useContext(TeamsContext);
+  return dataLoaded ? (<ManagerForm teams={teams}/>) : (<><p>Loading ...</p></>)
 }
 
 export default AddManagerForm;
