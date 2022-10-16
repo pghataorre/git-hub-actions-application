@@ -21,18 +21,20 @@ const TeamList = ({showButtons}) => {
 }
 
 const TeamListing = ({teams, showButtons, dataLoaded})  => {
-
   if (!dataLoaded) return (<p>.... Loading</p>);
   const teamList = teams.Items.map((team) => {
     const keyValue = showButtons ? `team-list-${team.ID}` : `team-points-list-${team.ID}`;
 
     return (
-        <li key={keyValue}>
+        <li key={keyValue} className='teams-row'>
           <div className="team-shield"><img src={`/images/${team.logo}`} alt="team shields"/></div>
           <div className="team-name">{team.name}</div>
           {!showButtons ? (<div className="team-points">{team.results[0].points}</div>) : (<></>)}
          
-          <PointsButtons showButtons={showButtons} teamId={team.ID}/>
+          <PointsButtons 
+            showButtons={showButtons} 
+            teamId={team.ID}
+            />
         </li>
       )
     });

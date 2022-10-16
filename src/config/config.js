@@ -1,5 +1,6 @@
 const config = {
-  apiUrl: "https://hxdgmqowq2.execute-api.eu-west-2.amazonaws.com/live"
+  apiUrl: "https://hxdgmqowq2.execute-api.eu-west-2.amazonaws.com/live",
+  timingAllocation: 1500,
 }
 
 export default config;

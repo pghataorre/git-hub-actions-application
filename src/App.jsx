@@ -68,7 +68,7 @@ const App = () => {
           <Route path="/addpoints" element={<Addpoints />} />
           <Route path="/addtournament" element={<AddTournament />} />
           <Route path="/addTeam" element={<AddTeam />} />
-          <Route path="*" element={<div>404! Not Found</div>} />
+          <Route path="*" element={<p>Sorry this page isn't avaialable</p>} />
         </Routes>
       </TeamsContext.Provider>
     </div>

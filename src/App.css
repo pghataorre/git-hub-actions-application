@@ -39,6 +39,7 @@ input[type=checkbox] {
   margin-right: 20px;
 }
 
+ol,
 ul {
   margin: 0;
   padding: 0;

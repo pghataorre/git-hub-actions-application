@@ -8,6 +8,13 @@
   text-align: left;
 }
 
+@media only screen and (max-width: 768px) {
+  .full-team-list {
+    width: 100%;
+    margin: 20px 0 20px 0;
+  }
+}
+
 .full-team-list li {
   display: flex;
   font-size: 24px;
@@ -16,6 +23,12 @@
   justify-content: space-between;
   background: url('/images/noShield.png') 0 0;
   border-bottom: 1px solid lightgray;
+}
+
+@media only screen and (max-width: 768px) {
+  li.teams-row {
+    display: block;
+  }
 }
 
 .full-team-list li:last-child{

@@ -1,21 +1,31 @@
-import React from 'react';
+import React, {useState} from 'react';
 import pointApi from './pointsApi';
 import './PointsButtons.css';
+import config from '../../config/config';
 
+const PointsButtons = ({showButtons, teamId, hightLightChange}) => {
+  const [isButtonDisabled, setIsButtonDisabled] = useState(false);
 
-const PointsButtons = ({showButtons, teamId}) => {
   const handleClick = async (state, teamId) => {
-    const hasHadded = await pointApi(state, teamId);
-    console.log('added', hasHadded);
+    await pointApi(state, teamId);
+    disableButton();
+  }
+
+  const disableButton = () => {
+    setIsButtonDisabled(true);
+
+    setTimeout(() => {
+      setIsButtonDisabled(false);
+    }, config.timingAllocation);
   }
 
   return (
     <>
     {showButtons ? (
       <div className="score-buttons">
-        <button className="points-button win" onClick={ () => handleClick('win', teamId) } alt="WIN">+</button>
-        <button className="points-button draw" onClick={ () => handleClick('draw', teamId) } alt="DRAW">/</button>
-        <button className="points-button loss" onClick={ () => handleClick('loss', teamId) }alt="LOSS">-</button> 
+        <button disabled={isButtonDisabled} className={`points-button win ${isButtonDisabled ? 'disabled' : ''}`} onClick={ (event) => handleClick('win', teamId) } alt="WIN">+</button>
+        <button disabled={isButtonDisabled} className={`points-button draw ${isButtonDisabled ? 'disabled' : ''}`} onClick={ (event) => handleClick('draw', teamId) } alt="DRAW">/</button>
+        <button disabled={isButtonDisabled} className={`points-button loss ${isButtonDisabled ? 'disabled' : ''}`} onClick={ (event) => handleClick('loss', teamId) }alt="LOSS">-</button> 
       </div>
       ) : (<></>)
     }
