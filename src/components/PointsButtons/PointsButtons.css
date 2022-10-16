@@ -1,6 +1,14 @@
 .score-buttons {
-  justify-content: right;
+  flex-grow: inherit;
 }
+
+@media only screen and (max-width: 768px) {
+  .score-buttons {
+    flex: 1;
+    text-align: right;
+  }
+}
+
 
 .score-buttons .points-button {
   width: 50px;
@@ -15,9 +23,20 @@
   font-weight: bold;
 }
 
+@media only screen and (max-width: 768px) {
+  .score-buttons .points-button {
+    margin-bottom: 20px;
+  }
+
+  .score-buttons .points-button:last-child {
+    margin-bottom: 20px;
+  }
+}
+
 .score-buttons .points-button:hover {
   opacity: .6;
 }
+
 
 .score-buttons .win {
   background-color: lightgreen;
