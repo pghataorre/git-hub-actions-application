@@ -25,13 +25,7 @@
   border-bottom: 1px solid lightgray;
 }
 
-@media only screen and (max-width: 768px) {
-  li.teams-row {
-    display: block;
-  }
-}
-
-.full-team-list li:last-child{
+.full-team-list li:last-child {
     border-bottom: none;
 }
 
@@ -39,9 +33,8 @@ li .team-shield {
   margin-right: 20px;
 }
 
-
 li .team-name {
-  flex-grow: 1;
+  flex-grow: 3;
   justify-content: flex-start;
 }
 
@@ -51,7 +44,6 @@ li .team-points {
 }
 
 li .team-shield img {
-
   width: 60px;
   height: 60px;
 }
