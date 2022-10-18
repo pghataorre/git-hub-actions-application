@@ -38,8 +38,7 @@ const ManagerForm = ({teams}) => {
   }
 
   const handleCheckBoxChange = (event) => {
-        event.preventDefault();
-        setIsCurrentManagerSelected(event.currentTarget.checked ? true : false);
+    setIsCurrentManagerSelected(event.currentTarget.checked ? true : false);
   }
 
   const options = () => {
@@ -58,7 +57,7 @@ const ManagerForm = ({teams}) => {
         
         <label htmlFor="team-list">Please select a team for this manager</label>
         <select name="team-list" ref={managerTeam}>
-          <option value="-1"></option>
+          <option value="-1">Select a manger</option>
           { options() }
         </select>
 

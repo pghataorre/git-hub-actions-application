@@ -1,39 +1,43 @@
-import React, { useEffect, useState } from 'react';
-import { Routes, Route } from 'react-router-dom';
+import React, { useEffect, useState } from "react";
+import { Routes, Route } from "react-router-dom";
 import './App.css';
-import Default from './pages/Default';
-import Teams from './pages/Teams';
-import AddManager from './pages/Addmanager';
-import AddTournament from './pages/AddTournament';
-import AddTeam from './pages/AddTeam';
-import Managers from './pages/Managers';
-import Addpoints from './pages/AddPoints';
-import Header from './components/Header/Header';
-import { TeamsContext } from './context/teamsContext';
-import getTeamsApi from './contextApi/getTeamsApi';
-import getTournament from './contextApi/getTournamentApi';
+import Default from "./pages/Default";
+import Teams from "./pages/Teams";
+import AddManager from "./pages/Addmanager";
+import AddTournament from "./pages/AddTournament";
+import AddTeam from "./pages/AddTeam";
+import Managers from "./pages/Managers";
+import Addpoints from "./pages/AddPoints";
+import Header from "./components/Header/Header";
+import { TeamsContext } from "./context/teamsContext";
+import getTeamsApi from "./contextApi/getTeamsApi";
+import getTournament from "./contextApi/getTournamentApi";
 
 const App = () => {
   const [error, setError] = useState(false);
-  const [teams ,setTeams] = useState({});
-  const [tournaments ,setTournaments] = useState({});
+  const [teams, setTeams] = useState({});
+  const [tournaments, setTournaments] = useState({});
   const [dataLoaded, setLoadedData] = useState(false);
-  const [tournamentDataLoaded, setTournamentDataLoaded] = useState(false)
+  const [tournamentDataLoaded, setTournamentDataLoaded] = useState(false);
 
   useEffect(() => {
-
     (async () => {
       const teamsData = await getTeamsApi();
-      
+
       if (!teamsData) {
+
+
+
+        
         setError(true);
       } else {
-        const sortedByTeamPoints= teamsData.Items.sort((a, b) => b.results[0].points - a.results[0].points); 
+        const sortedByTeamPoints = teamsData.Items.sort(
+          (a, b) => b.results[0].points - a.results[0].points
+        );
         teamsData.Items = sortedByTeamPoints;
         setLoadedData(true);
         setTeams(teamsData);
       }
-
     })();
 
     (async () => {
@@ -45,16 +49,15 @@ const App = () => {
         setTournaments(tournamentData);
       }
     })();
-
-  },[]);
+  }, []);
 
   const appData = {
     teams,
     tournaments,
     error,
     dataLoaded,
-    tournamentDataLoaded
-  }
+    tournamentDataLoaded,
+  };
 
   return (
     <div className="App">
@@ -73,5 +76,5 @@ const App = () => {
       </TeamsContext.Provider>
     </div>
   );
-}
+};
 export default App;
