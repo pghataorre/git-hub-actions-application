@@ -2,15 +2,22 @@ import React, { useContext } from 'react';
 import { TeamsContext } from '../../context/teamsContext';
 import './TournamentList.css';
 
-const TournamentList = () => {
+const TournamentList = ({showCheckBoxes, handleCheckBox}) => {
   const {tournaments, tournamentDataLoaded } = useContext(TeamsContext);
  
   if(!tournamentDataLoaded) return;
   if(tournaments.Items.length === 0) return;
  
-  const Tournaments = (tournaments) => {
-    return tournaments.Items.map((tournament) => {
-      return (<li key={`tournament-${tournament.ID}`}>{tournament.tournamentName}</li>)
+  const Tournaments = () => {
+    return tournaments.Items.map((tournamentItem) => {
+      const tournamentKey = `tournament-${tournamentItem.ID}`;
+      return (
+        <li key={tournamentKey}>
+            {showCheckBoxes && (
+            <input type="checkbox" value={tournamentItem.ID} onChange={(event) => handleCheckBox(event) } />
+            )}
+          {tournamentItem.tournamentName}
+        </li>)
     });
   }
 

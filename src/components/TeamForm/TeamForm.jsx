@@ -1,16 +1,29 @@
-import React, { useRef, useState, useContext } from 'react';
-import { TeamsContext } from '../../context/teamsContext';
+import React, { useRef, useState } from 'react';
 import TeamListNoLeague from '../TeamListNoLeague/TeamListNoLeague';
 import addTeam from '../../api/addTeam';
+import TournamentList from '../TournamentList/TournamentList';
 import ApiMessage from '../ApiStateMessages/ApiStateMessages';
 
 const TeamForm = () => {
-  const {tournaments, tournamentDataLoaded } = useContext(TeamsContext);
   const teamName = useRef();
   const teamLogo = useRef();
-  const tournamentSelected = useRef();
   const [hasPosted, setHasPosted] = useState(false);
   const [hasPostError, setHasPostError] = useState(false);
+  const [tournamentsSelected, setTournamentsSelected] = useState([]);
+
+  const handleCheckBox = (event) => {
+    let selectedTournament;
+
+    const { value, checked } = event.currentTarget;
+    if (!checked) {
+        selectedTournament = tournamentsSelected.filter((filterItem) => filterItem !== value);
+        setTournamentsSelected(selectedTournament);
+        return;
+    }
+
+    selectedTournament = [...tournamentsSelected, value];
+    setTournamentsSelected(selectedTournament);;
+  }
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -19,7 +32,7 @@ const TeamForm = () => {
       const body = {
         teamName: teamName.current.value || '-1',
         teamLogo: teamLogo.current.value || '-1',
-        tournamentId: tournamentSelected.current.value
+        tournamentId: tournamentsSelected
       };
 
       const res = await addTeam(body);
@@ -38,12 +51,6 @@ const TeamForm = () => {
       setHasPosted(false);
     }
   }
-
-  const options = () => {
-    return tournamentDataLoaded ? tournaments.Items.map((tournamentItem) => {
-      return (<option value={tournamentItem.ID} key={`tournament-option-${tournamentItem.ID}`}>{ tournamentItem.tournamentName }</option>)
-    }) : (<></>);
-  }
   
   return (
     <div className="team-form">
@@ -55,10 +62,10 @@ const TeamForm = () => {
         <label htmlFor="team-logo">Team logo name</label>
         <input ref={teamLogo} type="text" id="team-name" placeholder="Team logo" />
         <label htmlFor="tournament-list">Please select a Tournament</label>
-        <select name="tournament-list" ref={tournamentSelected}>
-          <option value="-1">Select a Tourmanet</option>
-          { options() }
-        </select>
+        <TournamentList 
+          showCheckBoxes={true}
+          handleCheckBox={handleCheckBox}
+        />
 
         <label htmlFor="submit-team-form">
           <button type="submit" id="submit-team-form">Add Team</button>
