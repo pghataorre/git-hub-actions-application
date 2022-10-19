@@ -4,12 +4,6 @@
   margin: 20px 0 20px 0;
 }
 
-/* @media only screen and (max-width: 768px) {
-  .full-team-list {
-    margin: 20px 0 20px 0;
-  }
-} */
-
 tr.teams-row:last-child {
   text-align: left;
 }
@@ -29,6 +23,10 @@ tr td.points,
 tr td.played {
   width: 50px;
   text-align: center;
+}
+
+tr td.points {
+  font-weight: bold;
 }
 
 @media only screen and (max-width: 768px) {

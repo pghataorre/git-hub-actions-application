@@ -43,7 +43,7 @@ const ManagerForm = ({teams}) => {
 
   const options = () => {
     return teams.Items.map((teamItem) => {
-      return (<option value={teamItem.ID} key={`team-option-${teamItem.ID}`}>{ teamItem.name }</option>)
+      return (<option value={teamItem.ID} key={`team-option-${teamItem.ID}`}>{ teamItem.teamName }</option>)
     });
   }
 
@@ -57,7 +57,7 @@ const ManagerForm = ({teams}) => {
         
         <label htmlFor="team-list">Please select a team for this manager</label>
         <select name="team-list" ref={managerTeam}>
-          <option value="-1">Select a manger</option>
+          <option value="-1">Select a Team</option>
           { options() }
         </select>
 

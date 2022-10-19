@@ -1,17 +1,18 @@
-import getManagers from  '../../api/getManagers';
+import getManagers from '../../api/getManagers';
 
-const getTeamManagers = async (teamId) => {
-  try {
-    const response = await getManagers(teamId);
-    if(response.ok) {
-      return await response.json();
-    }
+const getManagersApi = async (teamId) => {
+	try {
+		const response = await getManagers(teamId);
+		if (response.ok) {
+			const results = await response.json();
+			return results;
+		}
 
-    return false;
-  } catch (error) {
-    console.log('error ==== ', error);
-    return false;
-  }
-}
+		return {};
+	} catch (error) {
+		console.log('error ==== ', error);
+		return {};
+	}
+};
 
-export default getTeamManagers;
+export default getManagersApi;

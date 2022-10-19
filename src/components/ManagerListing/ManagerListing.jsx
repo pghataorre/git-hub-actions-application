@@ -1,7 +1,7 @@
 import React, { useContext, useRef, useState } from 'react';
 import { TeamsContext } from '../../context/teamsContext';
 import TeamManagerList from '../TeamManagerList/TeamManagerList';
-import getTeamManagers from './getMangersApi';
+import getManagersApi from './getMangersApi';
 
 const ManagerListing = () => {
   const {dataLoaded, teams} = useContext(TeamsContext);
@@ -18,15 +18,18 @@ const TeamsList = ({teams}) => {
 
     if(teamId !== '-1') {
       (async () => {
-        const result = await getTeamManagers(teamId);
-        setManagerData(result);
+        const result = await getManagersApi(teamId);
+
+        if (Object.keys(result).length > 0) {
+          setManagerData(result);
+        };
       })();
     }
   }
 
   const TeamOptions = (data) => {
     return data.map((teamItem) => {
-      return (<option value={teamItem.ID} key={`team-option-${teamItem.ID}`}>{ teamItem.name }</option>)
+      return (<option value={teamItem.ID} key={`team-option-${teamItem.ID}`}>{ teamItem.teamName }</option>)
     });
   }
 
@@ -38,7 +41,7 @@ const TeamsList = ({teams}) => {
         { TeamOptions(teams.Items) }
       </select>
       <div>
-        {setManagerData.length > 0 ? (<TeamManagerList managerData={managerData}/>) : (<></>)}
+        {Object.keys(managerData).length > 0 ? (<TeamManagerList managerData={managerData}/>) : (<p>No Managers Currently</p>)}
       </div>
     </div>
   )
