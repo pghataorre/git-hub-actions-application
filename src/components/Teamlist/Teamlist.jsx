@@ -6,6 +6,8 @@ import './Teamlist.css';
 const TeamList = ({showButtons}) => {
   const {teams, error, dataLoaded } = useContext(TeamsContext);
 
+  if(!teams) return (<></>)
+ 
   return (
     <div className="teams-listing">
       {error 
@@ -26,24 +28,36 @@ const TeamListing = ({teams, showButtons, dataLoaded})  => {
     const keyValue = showButtons ? `team-list-${team.ID}` : `team-points-list-${team.ID}`;
 
     return (
-        <li key={keyValue} className='teams-row'>
-          <div className="team-shield"><img src={`/images/${team.logo}`} alt="team shields"/></div>
-          <div className="team-name">{team.name}</div>
-          {!showButtons ? (<div className="team-points">{team.results[0].points}</div>) : (<></>)}
-         
-          <PointsButtons 
-            showButtons={showButtons} 
-            teamId={team.ID}
-            />
-        </li>
+        <tr key={keyValue} className='teams-row'>
+          <td className="team-shield"><img src={`/images/${team.logo}`} alt="team shields"/></td>
+          <td className="team-name">
+            <div>{team.teamName}</div> 
+            { showButtons && (<PointsButtons 
+              showButtons={showButtons} 
+              teamId={team.ID}
+            />)}
+          </td>
+          <td className="played">{team.results[0].played}</td>
+          <td className="points">{team.results[0].points}</td>
+        </tr>
       )
     });
 
   return (
-    <ol className="full-team-list">
-      <li><div>Teams</div><div>Points</div></li>
-      {teamList}
-    </ol>
+    <table className="full-team-list">
+      <thead className='teams-row'>
+        <tr>
+          <td className="team-shield">Teams</td>
+          <td></td>
+          <td className="played">Pld</td>
+          <td className="points">Pts</td>
+          <td></td>
+        </tr>
+      </thead>
+      <tbody>
+        {teamList}
+      </tbody>
+    </table>
   );
 }
 

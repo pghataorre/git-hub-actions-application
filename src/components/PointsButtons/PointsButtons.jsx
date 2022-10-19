@@ -7,8 +7,8 @@ const PointsButtons = ({showButtons, teamId, hightLightChange}) => {
   const [isButtonDisabled, setIsButtonDisabled] = useState(false);
 
   const handleClick = async (state, teamId) => {
-    await pointApi(state, teamId);
     disableButton();
+    await pointApi(state, teamId);
   }
 
   const disableButton = () => {

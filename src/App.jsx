@@ -23,18 +23,22 @@ const App = () => {
   useEffect(() => {
     (async () => {
       const teamsData = await getTeamsApi();
-
       if (!teamsData) {
-
-
-
-        
         setError(true);
       } else {
-        const sortedByTeamPoints = teamsData.Items.sort(
+
+        const sortedAtoZ = teamsData.Items.sort(
+          (a, b) => a.teamName.localeCompare(b.teamName)
+        );
+
+        teamsData.Items = sortedAtoZ;
+
+        const sortedByMostPoints = teamsData.Items.sort(
           (a, b) => b.results[0].points - a.results[0].points
         );
-        teamsData.Items = sortedByTeamPoints;
+
+        teamsData.Items = sortedByMostPoints;
+
         setLoadedData(true);
         setTeams(teamsData);
       }
@@ -61,17 +65,18 @@ const App = () => {
 
   return (
     <div className="App">
-      <TeamsContext.Provider value={appData}>
-        <Header />
+      <Header />
+        <TeamsContext.Provider value={appData}>
         <Routes>
           <Route index element={<Default />} />
+          <Route path="*" element={<p>Sorry this page isn't avaialable</p>} />
           <Route path="/addmanager" element={<AddManager />} />
           <Route path="/teams" element={<Teams />} />
           <Route path="/managers" element={<Managers />} />
           <Route path="/addpoints" element={<Addpoints />} />
           <Route path="/addtournament" element={<AddTournament />} />
           <Route path="/addTeam" element={<AddTeam />} />
-          <Route path="*" element={<p>Sorry this page isn't avaialable</p>} />
+          
         </Routes>
       </TeamsContext.Provider>
     </div>

@@ -32,7 +32,7 @@ const TeamForm = () => {
       const body = {
         teamName: teamName.current.value || '-1',
         teamLogo: teamLogo.current.value || '-1',
-        tournamentId: tournamentsSelected
+        tournamentId: tournamentsSelected || []
       };
 
       const res = await addTeam(body);

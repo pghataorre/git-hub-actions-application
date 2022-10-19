@@ -10,7 +10,7 @@ const TeamListNoLeague = () => {
  
   const TeamList = (teams) => {
     return teams.Items.map((teamItem) => {
-      return (<li key={`teamList-no-league-${teamItem.ID}`}>{teamItem.name}</li>)
+      return (<li key={`teamList-no-league-${teamItem.ID}`}>{teamItem.teamName}</li>)
     });
   }
 
