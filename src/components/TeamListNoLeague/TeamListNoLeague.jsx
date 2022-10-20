@@ -2,7 +2,7 @@ import React, { useContext } from 'react';
 import { TeamsContext } from '../../context/teamsContext'
 import './TeamListNoLeague.css';
 
-const TeamListNoLeague = ({showSelect, defaultOptionValue, name, id, onSelectChange, ref}) => {
+const TeamListNoLeague = ({showSelect, defaultOptionValue, name, id, onSelectChange}) => {
   const {teams, dataLoaded} = useContext(TeamsContext);
   
   if(!dataLoaded) return;
@@ -17,7 +17,6 @@ const TeamListNoLeague = ({showSelect, defaultOptionValue, name, id, onSelectCha
             name={name}
             id={id}
             onSelectChange={onSelectChange}
-            ref={ref}
           />) 
         : (
         <>
@@ -40,7 +39,7 @@ const TeamList = ({teams}) => {
 const TeamSelectList = ({teams, defaultOptionValue, name, id, onSelectChange, ref}) => {
   return (
   <>
-    <select name={name} id={id} onChange={(event) => onSelectChange(event)} ref={ref}>
+    <select name={name} id={id} onChange={(event) => onSelectChange(event)}>
       <option value="-1">{defaultOptionValue}</option> 
       { teams.Items.map((teamItem) => (<option key={`${name}-${teamItem.ID}`} value={teamItem.ID}>{teamItem.teamName}</option>)) }
     </select>

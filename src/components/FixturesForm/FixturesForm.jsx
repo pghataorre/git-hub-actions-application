@@ -1,19 +1,18 @@
-import React, { useRef, useState } from 'react';
+import React, { useState } from 'react';
 import TeamListNoLeague from '../TeamListNoLeague/TeamListNoLeague';
 import TournamentList from '../TournamentList/TournamentList';
-import DatePicker from "react-datepicker";
+import DatePicker from 'react-datepicker';
+import addFixtureApi from './addFixtureApi';
 import './FixturesForm.css';
-// import ApiMessage from '../ApiStateMessages/ApiStateMessages';
+import ApiMessage from '../ApiStateMessages/ApiStateMessages';
 
 const FixturesForm = () => {
   const [fixtureDate, setFixtureDate] = useState('');
   const [tournamentsSelected, setTournamentsSelected] = useState([]);
   const [homeTeamId, setHomeTeamId] = useState('');  
   const [awayTeamId, setAwayTeamId] = useState('');  
-  const homeTeamRef = useRef();
-  const awayTeamRef = useRef();
-  // const [hasPosted, setHasPosted] = useState(false);
-  // const [hasPostError, setHasPostError] = useState(false);
+  const [hasPosted, setHasPosted] = useState(false);
+  const [hasPostError, setHasPostError] = useState(false);
 
 
   const handleCheckBox = (event) => {
@@ -38,7 +37,7 @@ const FixturesForm = () => {
     setAwayTeamId(event.currentTarget.value);
   }
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
 
     const fixtureParams = {
@@ -48,13 +47,20 @@ const FixturesForm = () => {
       fixtureDate
     }
 
-    
+    const result = await addFixtureApi(fixtureParams);
+    if(Object.keys(result).length > 0) {
+      setHasPosted(true);
+      setHasPostError(false);
+    } else {
+      setHasPosted(false);
+      setHasPostError(true);
+    }
   }
   
   return (
     <div className="add-fixtures-form">
-      {/* <ApiMessage showMessage={hasPosted} cssClass='success' message='Fixture has been  added'/>
-      <ApiMessage showMessage={hasPostError} cssClass='error' message='Sorry there has been an error'/> */}
+      <ApiMessage showMessage={hasPosted} cssClass='success' message='Fixture has been  added'/>
+      <ApiMessage showMessage={hasPostError} cssClass='error' message='Sorry there has been an error'/>
       <form onSubmit={(event) => handleSubmit(event) }>
         <h3>Team Fixture selection</h3>
         <div className="fixtures-date">
@@ -63,6 +69,7 @@ const FixturesForm = () => {
             selected={fixtureDate} 
             onChange={(date) => setFixtureDate(date)}
             dateFormat="dd/MM/yyyy"
+            locale="en-GB"
           />
         </div>
         <div className="fixtures-selection">
@@ -72,16 +79,14 @@ const FixturesForm = () => {
             name="home-team-fixture"
             id="home-team-fixture"
             onSelectChange={handleHomeTeamSelectChange}
-            ref={homeTeamRef}
           /> 
           <h3 className="fixture-verses">VS</h3>
           <TeamListNoLeague
-              showSelect={true}
-              defaultOptionValue="Select an AWAY team"
-              name="away-team-fixture"
-              id="away-team-fixture"
-              onSelectChange={handleAwayTeamSelectChange}
-              ref={awayTeamRef}
+            showSelect={true}
+            defaultOptionValue="Select an AWAY team"
+            name="away-team-fixture"
+            id="away-team-fixture"
+            onSelectChange={handleAwayTeamSelectChange}
           />
         </div>
         <TournamentList 
