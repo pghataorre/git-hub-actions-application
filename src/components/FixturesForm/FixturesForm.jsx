@@ -9,8 +9,8 @@ import ApiMessage from '../ApiStateMessages/ApiStateMessages';
 const FixturesForm = () => {
   const [fixtureDate, setFixtureDate] = useState('');
   const [tournamentsSelected, setTournamentsSelected] = useState([]);
-  const [homeTeamId, setHomeTeamId] = useState('');  
-  const [awayTeamId, setAwayTeamId] = useState('');  
+  const [homeTeamId, setHomeTeamId] = useState('-1');  
+  const [awayTeamId, setAwayTeamId] = useState('-1');  
   const [hasPosted, setHasPosted] = useState(false);
   const [hasPostError, setHasPostError] = useState(false);
 
@@ -69,7 +69,6 @@ const FixturesForm = () => {
             selected={fixtureDate} 
             onChange={(date) => setFixtureDate(date)}
             dateFormat="dd/MM/yyyy"
-            locale="en-GB"
           />
         </div>
         <div className="fixtures-selection">
