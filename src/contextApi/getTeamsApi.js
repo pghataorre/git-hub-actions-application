@@ -1,8 +1,8 @@
 import getTeams from '../api/getTeams';
 
-const getTeamsApi = async () => {
+const getTeamsApi = async (tournamnetId) => {
 	try {
-		const res = await getTeams();
+		const res = await getTeams(tournamnetId);
 		if (!res.ok) {
 			return false;
 		}
