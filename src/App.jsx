@@ -70,13 +70,12 @@ const App = () => {
         <Routes>
           <Route index element={<Default />} />
           <Route path="*" element={<p>Sorry this page isn't avaialable</p>} />
-          <Route path="/addmanager" element={<AddManager />} />
           <Route path="/teams" element={<Teams />} />
           <Route path="/managers" element={<Managers />} />
           <Route path="/addpoints" element={<Addpoints />} />
+          <Route path="/addmanager" element={<AddManager />} />
           <Route path="/addtournament" element={<AddTournament />} />
-          <Route path="/addTeam" element={<AddTeam />} />
-          
+          <Route path="/addteam" element={<AddTeam />} />
         </Routes>
       </TeamsContext.Provider>
     </div>
