@@ -25,23 +25,10 @@ input[type=text] {
   cursor: pointer;
 }
 
-@media only screen and (max-width: 768px) {
-  button,
-  select,
-  input[type=text] {
-    width: 100%;
-  }
-}
-
 button {
   width: 40%;
 }
 
-@media only screen and (max-width: 768px) {
-  button {
-    width: 100%;
-  }
-}
 
 button:hover {
   background: grey;
@@ -60,9 +47,7 @@ ul {
   list-style-type: none;
 }
 
-.manager-listing-page,
-.teams-page,
-.default-page,
+.routes-page,
 .admin-page {
   text-align: center;
   margin: auto; 
@@ -78,4 +63,13 @@ ul {
 
 .error {
   background-color: lightcoral;
+}
+
+
+@media only screen and (max-width: 768px) {
+  button,
+  select,
+  input[type=text] {
+    width: 100%;
+  }
 }

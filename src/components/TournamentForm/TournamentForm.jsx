@@ -1,6 +1,6 @@
 import React, { useRef, useState } from 'react';
 import addTournament from '../../api/addTournament';
-import TournamentList from '../TournamentList/TournamentList';
+import TournamentListing from '../TournamentListing/TournamentListing';
 import ApiMessage from '../ApiStateMessages/ApiStateMessages';
 
 const TournamentForm = () => {
@@ -45,7 +45,7 @@ const TournamentForm = () => {
         </label>
       </form>
       <div>
-        <TournamentList />
+        <TournamentListing />
       </div>
     </div>
   )

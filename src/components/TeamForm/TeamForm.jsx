@@ -1,7 +1,7 @@
 import React, { useRef, useState } from 'react';
 import TeamListNoLeague from '../TeamListNoLeague/TeamListNoLeague';
 import addTeam from '../../api/addTeam';
-import TournamentList from '../TournamentList/TournamentList';
+import TournamentListing from '../TournamentListing/TournamentListing';
 import ApiMessage from '../ApiStateMessages/ApiStateMessages';
 
 const TeamForm = () => {
@@ -62,7 +62,7 @@ const TeamForm = () => {
         <label htmlFor="team-logo">Team logo name</label>
         <input ref={teamLogo} type="text" id="team-name" placeholder="Team logo" />
         <label htmlFor="tournament-list">Please select a Tournament</label>
-        <TournamentList 
+        <TournamentListing 
           showCheckBoxes={true}
           handleCheckBox={handleCheckBox}
         />

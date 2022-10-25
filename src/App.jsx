@@ -8,6 +8,7 @@ import AddTournament from "./pages/AddTournament";
 import AddTeam from "./pages/AddTeam";
 import AddFixtures from './pages/AddFixtures';
 import Managers from "./pages/Managers";
+import Fixtures from  "./pages/Fixtures";
 import Addpoints from "./pages/AddPoints";
 import Header from "./components/Header/Header";
 import { TeamsContext } from "./context/teamsContext";
@@ -73,6 +74,7 @@ const App = () => {
           <Route path="*" element={<p>Sorry this page isn't avaialable</p>} />
           <Route path="/teams" element={<Teams />} />
           <Route path="/managers" element={<Managers />} />
+          <Route path="/fixtures" element={<Fixtures />} />
           <Route path="/addpoints" element={<Addpoints />} />
           <Route path="/addmanager" element={<AddManager />} />
           <Route path="/addtournament" element={<AddTournament />} />

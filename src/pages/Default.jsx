@@ -4,7 +4,7 @@ import permyImage from '../images/permy.jpg';
 
 const Default = () => {
   return (
-    <div className="default-page">
+    <div className="routes-page">
       <h1>PERMY.CO.UK - THIS GUY</h1>
       <div className="image-container">
           <Images 

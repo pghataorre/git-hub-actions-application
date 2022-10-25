@@ -1,0 +1,12 @@
+.react-time-picker__wrapper {
+  box-sizing: border-box;
+  padding: 17px;
+  border-radius: 8px;
+}
+
+@media only screen and (max-width: 768px) {
+  .react-time-picker__wrapper {
+    width: 100%;
+    margin-top: 30px;
+  }
+}
