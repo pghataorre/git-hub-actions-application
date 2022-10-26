@@ -52,7 +52,7 @@ const fixturesApiCall = async () => {
 }
 
 const mapFilterFixtures = (fixtures, teams, todaysDate) => {
-  return fixtures.Items.filter((fixtureItem) => {
+  const fixturesFilteredData =  fixtures.Items.filter((fixtureItem) => {
     const fixtureDateString = new Date(fixtureItem.fixtureTimeDate).toLocaleDateString(config.dateLocaleString);
     if (fixtureDateString === todaysDate) {
       const homeTeam = teams.Items.filter((teamsItem) => {
@@ -69,6 +69,8 @@ const mapFilterFixtures = (fixtures, teams, todaysDate) => {
       return fixtureItem;
     }
   });
+
+  return fixturesFilteredData;
 }
 
 const Fixtures = ({fixturesData}) => {
