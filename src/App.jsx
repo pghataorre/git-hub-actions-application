@@ -68,7 +68,7 @@ const App = () => {
   return (
     <div className="App">
       <Header />
-        <TeamsContext.Provider value={appData}>
+      <TeamsContext.Provider value={appData}>
         <Routes>
           <Route index element={<Default />} />
           <Route path="*" element={<p>Sorry this page isn't avaialable</p>} />

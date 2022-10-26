@@ -23,7 +23,6 @@ const FixturesForm = () => {
 
   const handleTournamentSelect = (event) => {
     event.preventDefault();
-    debugger;
     setTournamentsSelected(event.currentTarget.value);
   }
 

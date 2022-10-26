@@ -3,6 +3,7 @@
 }
 
 .react-datepicker {
+  background-color: white;
   padding: 10px;
   background-color: white;
   border: 1px solid grey;
@@ -11,6 +12,10 @@
   box-shadow: 0 8px 8px -4px grey;
   cursor: pointer;
   width: 100%;
+}
+
+.react-datepicker-popper {
+  z-index: 1;
 }
 
 .react-datepicker__navigation {
