@@ -44,8 +44,6 @@ const filterFixturesToTeams = (fixtures, teams) => {
 		}
 	});
 
-	debugger;
-
 	return fixturesFilteredData.sort((a, b) => {
 		return (
 			new Date(a.fixtureTimeDate).getTime() -
