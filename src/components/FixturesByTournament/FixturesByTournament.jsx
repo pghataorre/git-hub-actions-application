@@ -1,6 +1,7 @@
 import React, { useContext, useState, useEffect } from 'react';
 import getFixturesApi from './getFixturesApi';
 import { TeamsContext } from '../../context/teamsContext';
+import filterFixturesToTeams from './filterFixturesToTeams';
 import Images from '../Images/Images';
 import config from '../../config/config';
 import './FixturesByTournament.css';
@@ -11,15 +12,13 @@ const FixturesByTournament = () => {
   const [fixturesDataLoaded, setFixturesDataLoaded] = useState(false);
 
   useEffect(() => {
-    let fixtures;
-    const todaysDate = new Date().toLocaleDateString(config.dateLocaleString);
+    let fixtures = {};
     (async () => {
       if(!dataLoaded) return;
-      fixtures = await fixturesApiCall();
-
+      fixtures = await getFixturesApi();
       if (Object.keys(fixtures).length > 0) {
         setFixturesDataLoaded(true);
-        fixtures.Items = mapFilterFixtures(fixtures, teams, todaysDate);
+        fixtures.Items = filterFixturesToTeams(fixtures, teams);
         setFilteredFixtures(fixtures);
       }
 
@@ -41,78 +40,55 @@ const FixturesByTournament = () => {
   );
 }
 
-const fixturesApiCall = async () => {
-  try {
-    const response = await getFixturesApi();
-    return response;
-  } catch(error) {
-    console.log('error ==== ', error);
-    return;
-  }
-}
-
-const mapFilterFixtures = (fixtures, teams, todaysDate) => {
-  const fixturesFilteredData =  fixtures.Items.filter((fixtureItem) => {
-    const fixtureDateString = new Date(fixtureItem.fixtureTimeDate).toLocaleDateString(config.dateLocaleString);
-    if (fixtureDateString === todaysDate) {
-      const homeTeam = teams.Items.filter((teamsItem) => {
-        return fixtureItem.homeTeamId === teamsItem.ID ? teamsItem.teamName : '';
-      })[0];
-
-      const awayTeam = teams.Items.filter((teamsItem) => {
-        return fixtureItem.awayTeamId === teamsItem.ID ? teamsItem.teamName : '';
-      })[0];
-
-      fixtureItem.homeTeam = homeTeam;
-      fixtureItem.awayTeam = awayTeam;
-
-      return fixtureItem;
-    }
-  });
-
-  return fixturesFilteredData;
-}
-
 const Fixtures = ({fixturesData}) => {
-    if (fixturesData.Items.length === 0) return (<li>NO FIXTURES TODAY</li>)
-    return fixturesData.Items.map((item) => {
-      const {
-        fixtureID,
-        fixtureTimeDate,
-        homeTeam: {
-          teamName: homeTeamName,
-          logo: homeTeamLogo
-        },
-        awayTeam: {
-          teamName: awayTeamName,
-          logo: awayTeamLogo
-        },
-      } = item;
+  if (!fixturesData.Items) return (<li>NO FIXTURES TODAY</li>)
+  return fixturesData.Items.map((item) => {
+    const {
+      fixtureID,
+      fixtureTimeDate,
+      homeTeam: {
+        teamName: homeTeamName,
+        logo: homeTeamLogo
+      },
+      awayTeam: {
+        teamName: awayTeamName,
+        logo: awayTeamLogo
+      },
+      homeTeamScore,
+      awayTeamScore,
+      gameInPlay,
+      showScores
+    } = item;
 
-      const formattedFixtureDate = new Date(fixtureTimeDate).toLocaleDateString(config.dateLocaleString);
+    const formattedFixtureDate = new Date(fixtureTimeDate).toLocaleDateString(config.dateLocaleString);
 
-      return (
-        <li key={fixtureID}>
-          <div className="fixture-date">
-            {formattedFixtureDate}
-          </div>
-          <div className="fixture-teams">
-            <span className="home-logo">
-              <Images src={`/images/${homeTeamLogo}`} altText={homeTeamName}/>
-            </span>
-            <span className="team-name">
-              {homeTeamName}
-            </span>           
-            <span className="versus">VS</span>
-            <span className="team-name">
-              {awayTeamName}
-            </span> 
-            <span className="away-logo">
-              <Images src={`/images/${awayTeamLogo}`} altText={awayTeamName}/>
-            </span>
-          </div>
-        </li> 
-      )
+    return (
+      <li key={fixtureID}>
+        <div className="fixture-date">
+          {formattedFixtureDate}
+        </div>
+        <div className="fixture-teams">
+          <span className="home-logo">
+            <Images src={`/images/${homeTeamLogo}`} altText={homeTeamName}/>
+          </span>
+          <span className="team-name">
+            {homeTeamName}
+          </span>           
+          <span className="versus">VS</span>
+          <span className="team-name">
+            {awayTeamName}
+          </span> 
+          <span className="away-logo">
+            <Images src={`/images/${awayTeamLogo}`} altText={awayTeamName}/>
+          </span>
+        </div>
+        {showScores && (
+        <div className="fixture-status">
+          <span className="scores">{homeTeamScore} - {awayTeamScore}</span>
+        </div>)}
+        {gameInPlay && (<div className="game-status">Game in Progress</div>)}
+      </li> 
+    )
   })
 }
 

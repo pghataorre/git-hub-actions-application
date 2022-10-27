@@ -25,15 +25,35 @@
   height: 80px;
 }
 
+.fixtures-list li span.team-name {
+  width: 100%;
+}
+
 .fixtures-list li span.versus {
   font-weight: bold;
   display: inline-block;
   margin: 0 20px 0px;
-  width: 80px;
+  width: 100px;
+}
+
+.fixtures-list li span.scores {
+  font-weight: bold;
+  display: inline-block;
+  margin: 0 0 20px 0;
+  width: 100px;
 }
 
 .fixtures-list li .fixture-date {
   margin-bottom: 20px;
+}
+
+.fixtures-list li .game-status {
+  display: blok;
+  margin: 10px auto;
+  background-color: lightgreen;
+  border-radius: 8px;
+  padding: 5px;
+  width: 40%;
 }
 
 @media only screen and (max-width: 768px) {
@@ -41,12 +61,17 @@
     display: none;
   }
 
-  .fixtures-list li span.team-name {
-    width: 100%;
-  }
-
   .fixtures-list li .fixture-teams {
     align-items: flex-start;
   }
+
+.fixtures-list li .game-status {
+  display: blok;
+  margin: 10px auto;
+  background-color: lightgreen;
+  border-radius: 8px;
+  padding: 5px;
+  width: 90%;
+}
 
 }
