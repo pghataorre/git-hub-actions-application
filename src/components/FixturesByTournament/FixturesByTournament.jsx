@@ -60,12 +60,17 @@ const Fixtures = ({fixturesData}) => {
       showScores
     } = item;
 
-    const formattedFixtureDate = new Date(fixtureTimeDate).toLocaleDateString(config.dateLocaleString);
+    const fixtureDateTimeObject = new Date(fixtureTimeDate)
+    const formattedFixtureDate = fixtureDateTimeObject.toLocaleDateString(config.dateLocaleString);
+    const fixtureTime = fixtureDateTimeObject.toLocaleTimeString([], {
+      hour: '2-digit',
+      minute: '2-digit',
+    });
 
     return (
       <li key={fixtureID}>
         <div className="fixture-date">
-          {formattedFixtureDate}
+          {`${formattedFixtureDate} - ${fixtureTime}`}
         </div>
         <div className="fixture-teams">
           <span className="home-logo">

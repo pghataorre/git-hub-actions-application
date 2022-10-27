@@ -44,7 +44,14 @@ const filterFixturesToTeams = (fixtures, teams) => {
 		}
 	});
 
-	return fixturesFilteredData;
+	debugger;
+
+	return fixturesFilteredData.sort((a, b) => {
+		return (
+			new Date(a.fixtureTimeDate).getTime() -
+			new Date(b.fixtureTimeDate).getTime()
+		);
+	});
 };
 
 export default filterFixturesToTeams;
