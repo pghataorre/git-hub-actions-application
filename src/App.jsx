@@ -6,12 +6,15 @@ import Teams from "./pages/Teams";
 import AddManager from "./pages/Addmanager";
 import AddTournament from "./pages/AddTournament";
 import AddTeam from "./pages/AddTeam";
-import AddFixtures from './pages/AddFixtures';
+import AddFixtures from "./pages/AddFixtures";
 import Managers from "./pages/Managers";
 import Fixtures from  "./pages/Fixtures";
+import EditFixture from "./pages/EditFixture";
+import EditSingleFixture from "./pages/EditSingleFixture";
 import Addpoints from "./pages/AddPoints";
 import Header from "./components/Header/Header";
 import { TeamsContext } from "./context/teamsContext";
+import FixturesProvider from "./context/FixturesProvider/FixturesProvider";
 import getTeamsApi from "./contextApi/getTeamsApi";
 import getTournament from "./contextApi/getTournamentApi";
 
@@ -69,18 +72,22 @@ const App = () => {
     <div className="App">
       <Header />
       <TeamsContext.Provider value={appData}>
-        <Routes>
-          <Route index element={<Default />} />
-          <Route path="*" element={<p>Sorry this page isn't avaialable</p>} />
-          <Route path="/teams" element={<Teams />} />
-          <Route path="/managers" element={<Managers />} />
-          <Route path="/fixtures" element={<Fixtures />} />
-          <Route path="/addpoints" element={<Addpoints />} />
-          <Route path="/addmanager" element={<AddManager />} />
-          <Route path="/addtournament" element={<AddTournament />} />
-          <Route path="/addteam" element={<AddTeam />} />
-          <Route path="/addfixture" element={<AddFixtures />} />
-        </Routes>
+        <FixturesProvider>  
+          <Routes>
+            <Route index element={<Default />} />
+            <Route path="*" element={<p>Sorry this page isn't avaialable</p>} />
+            <Route path="/teams" element={<Teams />} />
+            <Route path="/managers" element={<Managers />} />
+            <Route path="/addpoints" element={<Addpoints />} />
+            <Route path="/addmanager" element={<AddManager />} />
+            <Route path="/addtournament" element={<AddTournament />} />
+            <Route path="/addteam" element={<AddTeam />} />
+            <Route path="/fixtures" element={<Fixtures />} />
+            <Route path="/addfixture" element={<AddFixtures />} />
+            <Route path="/editfixture" element={<EditFixture />} />
+            <Route path="/editSingleFixture/:fixtureId" element={<EditSingleFixture />} />
+          </Routes>
+        </FixturesProvider>
       </TeamsContext.Provider>
     </div>
   );

@@ -2,9 +2,9 @@ import React, { useContext } from 'react';
 import { TeamsContext } from '../../context/teamsContext'
 import './TeamListNoLeague.css';
 
-const TeamListNoLeague = ({showSelect, defaultOptionValue, name, id, onSelectChange}) => {
+const TeamListNoLeague = ({showSelect, defaultOptionValue, name, id, onSelectChange, defaultValue}) => {
   const {teams, dataLoaded} = useContext(TeamsContext);
-  
+
   if(!dataLoaded) return;
   if(teams.Items.length === 0) return;
  
@@ -17,6 +17,7 @@ const TeamListNoLeague = ({showSelect, defaultOptionValue, name, id, onSelectCha
             name={name}
             id={id}
             onSelectChange={onSelectChange}
+            defaultValue={defaultValue}
           />) 
         : (
         <>
@@ -36,15 +37,18 @@ const TeamList = ({teams}) => {
   )
 }
 
-const TeamSelectList = ({teams, defaultOptionValue, name, id, onSelectChange, ref}) => {
-  return (
+const TeamSelectList = ({teams, defaultOptionValue, name, id, onSelectChange, defaultValue}) => (
   <>
-    <select name={name} id={id} onChange={(event) => onSelectChange(event)}>
-      <option value="-1">{defaultOptionValue}</option> 
-      { teams.Items.map((teamItem) => (<option key={`${name}-${teamItem.ID}`} value={teamItem.ID}>{teamItem.teamName}</option>)) }
+    <select name={name} id={id} onChange={(event) => onSelectChange(event)} defaultValue={defaultValue}> 
+      <option value="-1">{defaultOptionValue}</option>
+      { teams.Items.map((teamItem) => (
+        <option 
+          key={`${name}-${teamItem.ID}`} 
+          value={teamItem.ID}>{teamItem.teamName}
+        </option>))
+      }
     </select>
   </>
-  )
-}
+)
 
 export default TeamListNoLeague;

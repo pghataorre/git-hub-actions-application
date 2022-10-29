@@ -56,6 +56,17 @@
   width: 40%;
 }
 
+.fixtures-list .edit-mode-scores {
+  display: flex;
+  justify-content: space-between;
+  width: 40%;
+  margin: 0 auto 30px auto;
+}
+
+.edit-mode-scores div {
+  width: 300px;
+}
+
 @media only screen and (max-width: 768px) {
   .fixtures-list li img {
     display: none;
@@ -65,13 +76,17 @@
     align-items: flex-start;
   }
 
-.fixtures-list li .game-status {
-  display: blok;
-  margin: 10px auto;
-  background-color: lightgreen;
-  border-radius: 8px;
-  padding: 5px;
-  width: 90%;
-}
+  .fixtures-list li .game-status {
+    display: blok;
+    margin: 10px auto;
+    background-color: lightgreen;
+    border-radius: 8px;
+    padding: 5px;
+    width: 90%;
+  }
+
+  .fixtures-list .edit-mode-scores {
+    width: 100%;
+  }
 
 }

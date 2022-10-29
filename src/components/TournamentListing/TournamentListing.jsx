@@ -28,12 +28,12 @@ const TournamentList = ({showCheckBoxes, handleCheckBox, tournaments}) => {
 }
 
 
-const TournamentSelectList = ({data, defaultOptionValue, name, id, onSelectChange}) => {
+const TournamentSelectList = ({data, defaultOptionValue, name, id, onSelectChange, defaultValue}) => {
   if(Object.keys(data).length === 0) return (<></>);
-
+  
   return (
   <>
-    <select name={name} id={id} onChange={(event) => onSelectChange(event)}>
+    <select name={name} id={id} onChange={(event) => onSelectChange(event)} defaultValue={defaultValue}>
       <option value="-1">{defaultOptionValue}</option> 
       { data.Items.map((tournamentItem) => (<option key={`${name}-${tournamentItem.ID}`} value={tournamentItem.ID}>{tournamentItem.tournamentName}</option>)) }
     </select>
@@ -41,7 +41,7 @@ const TournamentSelectList = ({data, defaultOptionValue, name, id, onSelectChang
   )
 }
 
-const TournamentListing = ({showCheckBoxes, handleCheckBox, name, id, onSelectChange, showAsSelect}) => {
+const TournamentListing = ({showCheckBoxes, handleCheckBox, name, id, onSelectChange, showAsSelect, defaultValue}) => {
     const {tournaments, tournamentDataLoaded } = useContext(TeamsContext);
 
     if(!tournamentDataLoaded) return (<></>);
@@ -54,6 +54,7 @@ const TournamentListing = ({showCheckBoxes, handleCheckBox, name, id, onSelectCh
         name={name}
         id={id}
         onSelectChange={onSelectChange}
+        defaultValue={defaultValue}
       />) 
     : (<TournamentList 
         showCheckBoxes={showCheckBoxes}

@@ -1,28 +1,28 @@
 import React, { useContext, useState, useEffect } from 'react';
-import getFixturesApi from './getFixturesApi';
+import { useNavigate } from "react-router-dom";
 import { TeamsContext } from '../../context/teamsContext';
+import { FixturesContext } from '../../context/FixturesContext';
 import filterFixturesToTeams from './filterFixturesToTeams';
 import Images from '../Images/Images';
 import config from '../../config/config';
+import scoresDefaultData from '../../config/defaultSelectBox';
+import SelectBox from '../SelectBox/SelectBox';
+import editSoresApi from './editScoresApi';
 import './FixturesByTournament.css';
 
-const FixturesByTournament = () => {
+const FixturesByTournament = ({editMode}) => {
   const {teams, dataLoaded} = useContext(TeamsContext);
+  const {fixtures, fixturesLoading} = useContext(FixturesContext);
   const [filteredFixtures, setFilteredFixtures] = useState({});
   const [fixturesDataLoaded, setFixturesDataLoaded] = useState(false);
 
   useEffect(() => {
-    let fixtures = {};
-    (async () => {
-      if(!dataLoaded) return;
-      fixtures = await getFixturesApi();
-      if (Object.keys(fixtures).length > 0) {
-        setFixturesDataLoaded(true);
-        fixtures.Items = filterFixturesToTeams(fixtures, teams);
-        setFilteredFixtures(fixtures);
-      }
-
-    })();
+    if(!fixturesLoading) return;
+    if (Object.keys(fixtures).length > 0) {
+      setFixturesDataLoaded(true);
+      fixtures.Items = filterFixturesToTeams(fixtures, teams);
+      setFilteredFixtures(fixtures);
+    }
   },[teams]);
 
   return (
@@ -33,6 +33,7 @@ const FixturesByTournament = () => {
         ?  (<Fixtures 
             fixturesData={filteredFixtures} 
             fixturesDataLoaded={fixturesDataLoaded}
+            editMode={editMode}
           />) 
         : (<li>Loading</li>)}
       </ul>
@@ -40,7 +41,37 @@ const FixturesByTournament = () => {
   );
 }
 
-const Fixtures = ({fixturesData}) => {
+const Fixtures = ({fixturesData, editMode}) => {
+  const [homeTeamCurrentScore, setHomeTeamCurrentScore] = useState(0);
+  const [awayTeamCurrentScore, setAwayTeamCurrentScore] = useState(0);
+  const navigate = useNavigate(); 
+  
+  const handleButtonClick = (event, fixtureID) => {
+    event.preventDefault();
+
+    navigate(`/editSingleFixture/${fixtureID}`);
+  }
+
+  const handleScoresClick = async (event, fixtureID) => {
+    event.preventDefault();
+    const postBody = {
+      homeTeamScore: homeTeamCurrentScore,
+      awayTeamScore: awayTeamCurrentScore,
+      fixtureID,
+      updateScores: true,
+    };
+
+    await editSoresApi(postBody);
+  }
+
+  const setScores = (scoreValue, isHomeTeam) => {
+    if (isHomeTeam) {
+      setHomeTeamCurrentScore(scoreValue);
+    } else {
+      setAwayTeamCurrentScore(scoreValue);
+    }
+  }
+
   if (!fixturesData.Items) return (<li>NO FIXTURES TODAY</li>)
   return fixturesData.Items.map((item) => {
     const {
@@ -68,7 +99,7 @@ const Fixtures = ({fixturesData}) => {
     });
 
     return (
-      <li key={fixtureID}>
+      <li key={`fixture-item-${fixtureID}`}>
         <div className="fixture-date">
           {`${formattedFixtureDate} - ${fixtureTime}`}
         </div>
@@ -92,6 +123,37 @@ const Fixtures = ({fixturesData}) => {
           <span className="scores">{homeTeamScore} - {awayTeamScore}</span>
         </div>)}
         {gameInPlay && (<div className="game-status">Game in Progress</div>)}
+        { editMode && (
+        <form onSubmit={(event) => handleScoresClick(event, fixtureID)}>
+          <div className="edit">
+            <div className="edit-mode-scores">
+              <div>
+                <SelectBox 
+                  data={scoresDefaultData}
+                  name="home-team-score"
+                  onSelectChange={(event) => setScores(event.currentTarget.value, true)} 
+                  optionsObjectPropertyName="optionValue"
+                  className="scores-select"
+                  defaultValue={homeTeamScore}
+                />
+              </div>
+              <div></div>
+              <div>
+                <SelectBox 
+                  data={scoresDefaultData}
+                  name="away-team-score"
+                  onSelectChange={(event) => setScores(event.currentTarget.value, false)} 
+                  optionsObjectPropertyName="optionValue"
+                  className="scores-select"
+                  defaultValue={awayTeamScore}
+                />
+              </div>
+            </div>
+            <button id="edit-fixture-scores" >Set scores</button>
+            <button id="edit-fixture" onClick={ (event) => handleButtonClick(event, fixtureID) }>Edit fixture</button>
+          </div>
+        </form>
+        )}
       </li> 
     )
   })

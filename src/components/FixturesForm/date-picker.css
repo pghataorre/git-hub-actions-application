@@ -50,6 +50,10 @@
   border-radius: 50%;
 }
 
+.react-datepicker__day--selected {
+  background-color: lightblue;
+}
+
 .react-datepicker__day:hover {
   background-color: lightblue;
 }
