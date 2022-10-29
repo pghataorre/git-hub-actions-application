@@ -42,8 +42,6 @@ const FixturesByTournament = ({editMode}) => {
 }
 
 const Fixtures = ({fixturesData, editMode}) => {
-  const [homeTeamCurrentScore, setHomeTeamCurrentScore] = useState(0);
-  const [awayTeamCurrentScore, setAwayTeamCurrentScore] = useState(0);
   const navigate = useNavigate(); 
   
   const handleButtonClick = (event, fixtureID) => {
@@ -54,22 +52,16 @@ const Fixtures = ({fixturesData, editMode}) => {
 
   const handleScoresClick = async (event, fixtureID) => {
     event.preventDefault();
+    const [currentHomeTeamScore, currentAwayTeamScore] = event.currentTarget;
+
     const postBody = {
-      homeTeamScore: homeTeamCurrentScore,
-      awayTeamScore: awayTeamCurrentScore,
+      homeTeamScore: Number(currentHomeTeamScore.value),
+      awayTeamScore: Number(currentAwayTeamScore.value),
       fixtureID,
       updateScores: true,
     };
 
     await editSoresApi(postBody);
-  }
-
-  const setScores = (scoreValue, isHomeTeam) => {
-    if (isHomeTeam) {
-      setHomeTeamCurrentScore(scoreValue);
-    } else {
-      setAwayTeamCurrentScore(scoreValue);
-    }
   }
 
   if (!fixturesData.Items) return (<li>NO FIXTURES TODAY</li>)
@@ -131,7 +123,7 @@ const Fixtures = ({fixturesData, editMode}) => {
                 <SelectBox 
                   data={scoresDefaultData}
                   name="home-team-score"
-                  onSelectChange={(event) => setScores(event.currentTarget.value, true)} 
+                  onSelectChange={() => () => } 
                   optionsObjectPropertyName="optionValue"
                   className="scores-select"
                   defaultValue={homeTeamScore}
@@ -142,7 +134,7 @@ const Fixtures = ({fixturesData, editMode}) => {
                 <SelectBox 
                   data={scoresDefaultData}
                   name="away-team-score"
-                  onSelectChange={(event) => setScores(event.currentTarget.value, false)} 
+                  onSelectChange={() => () => } 
                   optionsObjectPropertyName="optionValue"
                   className="scores-select"
                   defaultValue={awayTeamScore}
