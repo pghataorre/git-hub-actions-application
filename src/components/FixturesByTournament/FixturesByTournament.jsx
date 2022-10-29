@@ -123,7 +123,7 @@ const Fixtures = ({fixturesData, editMode}) => {
                 <SelectBox 
                   data={scoresDefaultData}
                   name="home-team-score"
-                  onSelectChange={() => () => } 
+                  onSelectChange={() => () => {}} 
                   optionsObjectPropertyName="optionValue"
                   className="scores-select"
                   defaultValue={homeTeamScore}
@@ -134,7 +134,7 @@ const Fixtures = ({fixturesData, editMode}) => {
                 <SelectBox 
                   data={scoresDefaultData}
                   name="away-team-score"
-                  onSelectChange={() => () => } 
+                  onSelectChange={() => () => {} } 
                   optionsObjectPropertyName="optionValue"
                   className="scores-select"
                   defaultValue={awayTeamScore}
