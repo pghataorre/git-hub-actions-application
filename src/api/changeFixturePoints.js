@@ -1,13 +1,10 @@
 import config from '../config/config';
 
-const addTeam = async (body) => {
-	const { tournamentId } = body;
-
+const changeFixturesPoints = async (body) => {
 	return await fetch(
-		`${config.apiUrl}
-		/tournaments/${tournamentId}/teams`,
+		`${config.apiUrl}/tournaments/${body.tournamentId}/fixtures/setpoints`,
 		{
-			method: 'POST',
+			method: 'PATCH',
 			headers: {
 				'Content-type': 'application/json; charset=UTF-8',
 			},
@@ -16,4 +13,4 @@ const addTeam = async (body) => {
 	);
 };
 
-export default addTeam;
+export default changeFixturesPoints;

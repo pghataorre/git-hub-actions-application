@@ -2,13 +2,13 @@ import React, { useEffect, useState } from 'react';
 import { FixturesContext } from "../FixturesContext";
 import getFixturesApi from "../../contextApi/getFixturesApi";
 
-const FixturesProvider = ({children}) => {
+const FixturesProvider = ({children, tournamentId}) => {
   const [fixtures, setFixtures] = useState({});
   const [fixturesLoading, setFixturesLoading] = useState(false);
   
   useEffect(() => {
     (async () => {
-      const fixtureData = await getFixturesApi();
+      const fixtureData = await getFixturesApi(tournamentId);
       if (Object.keys(fixtureData).length > 0) {
         setFixturesLoading(true);
         setFixtures(fixtureData);
@@ -18,7 +18,8 @@ const FixturesProvider = ({children}) => {
 
   const fixturesContext = {
     fixtures,
-    fixturesLoading
+    fixturesLoading,
+    tournamentId
   };
 
   return (

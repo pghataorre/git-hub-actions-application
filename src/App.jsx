@@ -16,9 +16,10 @@ import Header from "./components/Header/Header";
 import { TeamsContext } from "./context/teamsContext";
 import FixturesProvider from "./context/FixturesProvider/FixturesProvider";
 import getTeamsApi from "./contextApi/getTeamsApi";
-import getTournament from "./contextApi/getTournamentApi";
+import getTournamentsApi from "./contextApi/getTournamentApi";
 
 const App = () => {
+  const defaultTournament = '0769cf5b-c483-4b4d-a2aa-8a7ab02e5ddd';
   const [error, setError] = useState(false);
   const [teams, setTeams] = useState({});
   const [tournaments, setTournaments] = useState({});
@@ -27,7 +28,7 @@ const App = () => {
 
   useEffect(() => {
     (async () => {
-      const teamsData = await getTeamsApi();
+      const teamsData = await getTeamsApi(defaultTournament);
       if (!teamsData) {
         setError(true);
       } else {
@@ -50,7 +51,7 @@ const App = () => {
     })();
 
     (async () => {
-      const tournamentData = await getTournament();
+      const tournamentData = await getTournamentsApi(defaultTournament);
       if (!tournamentData) {
         setError(true);
       } else {
@@ -72,7 +73,7 @@ const App = () => {
     <div className="App">
       <Header />
       <TeamsContext.Provider value={appData}>
-        <FixturesProvider>  
+        <FixturesProvider tournamentId={defaultTournament}>  
           <Routes>
             <Route index element={<Default />} />
             <Route path="*" element={<p>Sorry this page isn't avaialable</p>} />

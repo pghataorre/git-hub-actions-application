@@ -1,9 +1,7 @@
 import config from '../config/config';
 
-const getFixtures = async (tournamnetId) => {
-	return await fetch(
-		`${config.apiUrl}/fixtures/getFixtures/${!tournamnetId ? '' : tournamnetId}`
-	);
+const getFixtures = async (tournamentId) => {
+	return await fetch(`${config.apiUrl}/tournaments/${tournamentId}/fixtures`);
 };
 
 export default getFixtures;

@@ -1,8 +1,8 @@
 import getFixtures from '../api/getFixtures';
 
-const getFixturesApi = async (tournamnetId) => {
+const getFixturesApi = async (tournamentId) => {
 	try {
-		const res = await getFixtures(tournamnetId);
+		const res = await getFixtures(tournamentId);
 		if (!res.ok) {
 			return {};
 		}

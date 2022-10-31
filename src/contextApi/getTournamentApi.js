@@ -1,18 +1,18 @@
 import getTournament from '../api/getTournaments';
 
-const getTournamentsApi = async () => {
-  try {
-    const response = await getTournament();
-    
-    if(response.ok) {
-      return await response.json();
-    }
+const getTournamentApi = async (tournamentId) => {
+	try {
+		const response = await getTournament(tournamentId);
 
-    return false;
-  } catch (error) {
-    console.log('error ==== ', error);
-    return false;
-  }
-}
+		if (response.ok) {
+			return await response.json();
+		}
 
-export default getTournamentsApi;
+		return {};
+	} catch (error) {
+		console.log('error ==== ', error);
+		return {};
+	}
+};
+
+export default getTournamentApi;

@@ -7,12 +7,12 @@ import Images from '../Images/Images';
 import config from '../../config/config';
 import scoresDefaultData from '../../config/defaultSelectBox';
 import SelectBox from '../SelectBox/SelectBox';
-import editSoresApi from './editScoresApi';
+import changeFixturesPointsApi from './changeFixturesPointsApi';
 import './FixturesByTournament.css';
 
 const FixturesByTournament = ({editMode}) => {
   const {teams, dataLoaded} = useContext(TeamsContext);
-  const {fixtures, fixturesLoading} = useContext(FixturesContext);
+  const {fixtures, fixturesLoading, tournamentId} = useContext(FixturesContext);
   const [filteredFixtures, setFilteredFixtures] = useState({});
   const [fixturesDataLoaded, setFixturesDataLoaded] = useState(false);
 
@@ -34,6 +34,7 @@ const FixturesByTournament = ({editMode}) => {
             fixturesData={filteredFixtures} 
             fixturesDataLoaded={fixturesDataLoaded}
             editMode={editMode}
+            tournamentId={tournamentId}
           />) 
         : (<li>Loading</li>)}
       </ul>
@@ -41,7 +42,7 @@ const FixturesByTournament = ({editMode}) => {
   );
 }
 
-const Fixtures = ({fixturesData, editMode}) => {
+const Fixtures = ({fixturesData, editMode, tournamentId}) => {
   const navigate = useNavigate(); 
   
   const handleButtonClick = (event, fixtureID) => {
@@ -50,7 +51,7 @@ const Fixtures = ({fixturesData, editMode}) => {
     navigate(`/editSingleFixture/${fixtureID}`);
   }
 
-  const handleScoresClick = async (event, fixtureID) => {
+  const handleScoresClick = async (event, fixtureID, tournamentId) => {
     event.preventDefault();
     const [currentHomeTeamScore, currentAwayTeamScore] = event.currentTarget;
 
@@ -59,9 +60,10 @@ const Fixtures = ({fixturesData, editMode}) => {
       awayTeamScore: Number(currentAwayTeamScore.value),
       fixtureID,
       updateScores: true,
+      tournamentId
     };
 
-    await editSoresApi(postBody);
+    await changeFixturesPointsApi(postBody);
   }
 
   if (!fixturesData.Items) return (<li>NO FIXTURES TODAY</li>)
@@ -116,7 +118,7 @@ const Fixtures = ({fixturesData, editMode}) => {
         </div>)}
         {gameInPlay && (<div className="game-status">Game in Progress</div>)}
         { editMode && (
-        <form onSubmit={(event) => handleScoresClick(event, fixtureID)}>
+        <form onSubmit={(event) => handleScoresClick(event, fixtureID, tournamentId)}>
           <div className="edit">
             <div className="edit-mode-scores">
               <div>

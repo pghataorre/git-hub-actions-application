@@ -1,9 +1,7 @@
 import config from '../config/config';
 
-const getTeams = async (tournamnetId) => {
-	return await fetch(
-		`${config.apiUrl}/teams/getTeams/${!tournamnetId ? '' : tournamnetId}`
-	);
+const getTeams = async (tournamentId) => {
+	return await fetch(`${config.apiUrl}/tournaments/${tournamentId}/teams`);
 };
 
 export default getTeams;
