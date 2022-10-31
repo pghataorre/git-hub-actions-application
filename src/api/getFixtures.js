@@ -2,7 +2,7 @@ import config from '../config/config';
 
 const getFixtures = async (tournamnetId) => {
 	return await fetch(
-		`${config.apiUrl}/getFixtures/${!tournamnetId ? '' : tournamnetId}`
+		`${config.apiUrl}/fixtures/getFixtures/${!tournamnetId ? '' : tournamnetId}`
 	);
 };
 
