@@ -143,8 +143,10 @@ const Fixtures = ({fixturesData, editMode, tournamentId}) => {
                 />
               </div>
             </div>
-            <button id="edit-fixture-scores" >Set scores</button>
-            <button id="edit-fixture" onClick={ (event) => handleButtonClick(event, fixtureID) }>Edit fixture</button>
+            <div className="edit-mode-scores-buttons">
+              <button id="edit-fixture-scores" >Set scores</button>
+              <button id="edit-fixture" onClick={ (event) => handleButtonClick(event, fixtureID) }>Edit fixture</button>
+            </div>
           </div>
         </form>
         )}
