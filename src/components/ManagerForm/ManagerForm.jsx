@@ -10,8 +10,7 @@ const ManagerForm = ({teams}) => {
   const [isCurrentManagerSelected, setIsCurrentManagerSelected] = useState(false);
   const [hasPosted, setHasPosted] = useState(false);
   const [hasPostError, setHasPostError] = useState(false);
-
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
 
     const body = {
@@ -20,7 +19,9 @@ const ManagerForm = ({teams}) => {
       isCurrentManger: isCurrentManagerSelected
     }
 
-    addManager(body).then((res) => {
+    try {
+      const res = await addManager(body);
+
       if (res.ok) {
         setHasPosted(true);
         setHasPostError(false);
@@ -29,12 +30,12 @@ const ManagerForm = ({teams}) => {
 
       setHasPosted(false);
       setHasPostError(true);
-    })
-    .catch((error) => {
-      console.log(error);
-      setHasPostError(true);
+      return;
+
+    } catch(error) {
       setHasPosted(false);
-    });
+      setHasPostError(true);
+    }
   }
 
   const handleCheckBoxChange = (event) => {
@@ -50,7 +51,7 @@ const ManagerForm = ({teams}) => {
   return (
     <div className="manager-form">
       <ApiMessage showMessage={hasPosted} cssClass='success' message='Manager has been added.'/>
-      <ApiMessage showMessage={hasPostError} cssClass='error' message='Sorry there has been an error'/>
+      <ApiMessage showMessage={hasPostError} cssClass='error' message="An error has occurred"/>
       <form onSubmit={(event) => handleSubmit(event) }>
         <label htmlFor="manager-name">Name of the football manager </label>
           <input ref={managerName} type="text" id="manager-name" placeholder="Manager name" />
