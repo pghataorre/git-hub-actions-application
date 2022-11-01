@@ -7,6 +7,12 @@ import './EditFixtureMode.css';
 
 
 const EditFixtureMode = ({fixturesData, tournamentId}) => {
+  const {
+    fixtureID,
+    homeTeamScore,
+    awayTeamScore,
+  } = fixturesData;
+
   const navigate = useNavigate(); 
   
   const handleButtonClick = (event, fixtureID) => {
@@ -29,11 +35,7 @@ const EditFixtureMode = ({fixturesData, tournamentId}) => {
     await changeFixturesScoresApi(postBody);
   }
 
-  const {
-    fixtureID,
-    homeTeamScore,
-    awayTeamScore,
-  } = fixturesData;
+
 
   return (
     <div className="edit-mode-container">

@@ -8,10 +8,10 @@ const getManagersApi = async (teamId) => {
 			return results;
 		}
 
-		return {};
+		return [];
 	} catch (error) {
 		console.log('error ==== ', error);
-		return {};
+		return [];
 	}
 };
 

@@ -15,8 +15,8 @@ const ManagerForm = ({teams}) => {
     event.preventDefault();
 
     const body = {
-      teamId: managerTeam.current.value || '',
-      managerName: managerName.current.value || '',
+      teamId: managerTeam.current.value || '-1',
+      managerName: managerName.current.value || '-1',
       isCurrentManger: isCurrentManagerSelected
     }
 

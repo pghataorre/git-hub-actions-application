@@ -2,7 +2,7 @@ import React from 'react';
 import './TeamManagerList.css';
 
 const TeamManagerList = ({managerData}) => {
-
+  
   if (Object.keys(managerData).length === 0) return; 
   if (managerData.Items.length === 0) return; 
 

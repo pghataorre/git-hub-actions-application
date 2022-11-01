@@ -56,7 +56,7 @@ const Fixtures = ({fixturesData, editMode, tournamentId}) => {
         <FixtureScores fixtureData={item} showScores={item} />
         {gameInPlay && (<div className="game-status">Game in Progress</div>)}
         { editMode && (
-          <EditFixtureMode fixturesData={fixturesData} tournamentId={tournamentId} />
+          <EditFixtureMode fixturesData={item} tournamentId={tournamentId} />
         )}
       </li> 
     )
