@@ -1,4 +1,4 @@
-import changeFixturesScores from '../../api/changeFixtureScores';
+import changeFixturesScores from '../../../api/changeFixtureScores';
 
 const changeFixturesScoresApi = async (body) => {
 	try {

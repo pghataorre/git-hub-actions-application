@@ -3,8 +3,8 @@ import { TeamsContext } from '../../../context/teamsContext';
 import { FixturesContext } from '../../../context/FixturesContext';
 import filterFixturesToTeams from './filterFixturesToTeams';
 import FutureTeamDetails from '../FixtureTeamDetails/FixtureTeamDetails';
-import FixtureDateTime from '../../FixtureDateTime/FixtureDateTime';
-import EditFixtureMode from '../../EditFixturesMode/EditFixtureMode';
+import FixtureDateTime from '../FixtureDateTime/FixtureDateTime';
+import EditFixtureMode from '../EditFixturesMode/EditFixtureMode';
 import FixtureScores from '../FixtureScores/FixtureScores';
 import './FixturesByTournament.css';
 

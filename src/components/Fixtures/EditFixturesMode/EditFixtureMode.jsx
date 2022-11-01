@@ -1,7 +1,7 @@
 import React  from 'react';
 import { useNavigate } from "react-router-dom";
-import scoresDefaultData from '../../config/defaultSelectBox';
-import SelectBox from '../SelectBox/SelectBox';
+import scoresDefaultData from '../../../config/defaultSelectBox';
+import SelectBox from '../../SelectBox/SelectBox';
 import changeFixturesScoresApi from './changeFixturesScoresApi';
 import './EditFixtureMode.css';
 
