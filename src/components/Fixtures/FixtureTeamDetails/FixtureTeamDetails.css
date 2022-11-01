@@ -1,0 +1,33 @@
+.fixture-teams {
+  display: flex;
+  justify-content: space-between;
+}
+
+.fixture-teams .team-detail {
+  width: 100%;
+}
+
+.fixture-teams .versus {
+  font-weight: bold;
+  display: inline-block;
+  margin: 0 20px 0px;
+  width: 100px;
+}
+
+.fixture-teams .scores {
+  font-weight: bold;
+  display: inline-block;
+  margin: 0 0 20px 0;
+  width: 100px;
+}
+
+.fixture-teams img {
+  width: 80px;
+  height: 80px;
+}
+
+@media only screen and (max-width: 768px) {
+  .fixture-teams img {
+    display: none;
+  }
+}

@@ -1,0 +1,32 @@
+.fixtures-list li {
+  border-bottom: 2px solid lightgray;
+  padding: 30px 0 30px 0;
+  font-size: 24px;
+}
+
+.fixtures-list li:last-child {
+  border-bottom: none;
+}
+
+.fixtures-list li .game-status {
+  display: block;
+  margin: 10px auto;
+  background-color: lightgreen;
+  border-radius: 8px;
+  padding: 5px;
+  width: 40%;
+}
+
+
+@media only screen and (max-width: 768px) {
+  .fixtures-list li img {
+    display: none;
+  }
+
+  .fixtures-list li .game-status {
+    display: block;
+    margin: 10px 0 10px 0;
+    background-color: lightgreen;
+    width: 100%;
+  }
+}

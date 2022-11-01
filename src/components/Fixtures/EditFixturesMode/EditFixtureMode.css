@@ -1,0 +1,40 @@
+.edit-mode-container {
+  margin: 0 auto 30px auto;
+}
+
+.edit-mode-container form {
+  width: 100%;
+}
+
+.edit-mode-container .edit-mode-scores {
+    display: flex;
+    justify-content: center;
+    margin: 0 0 30px 0;
+}
+
+.edit-mode-scores div {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  margin: 0px 0px 10px 0px;
+}
+
+.edit-mode-scores-buttons {
+  display: flex;
+  justify-content: space-between;
+}
+
+.edit-mode-scores-buttons button {
+  margin: 0 0 30px 0;
+}
+
+@media only screen and (max-width: 768px) {
+  .edit-mode-container .edit-mode-scores {
+    display: block;
+  }
+
+  .edit-mode-scores-buttons {
+    display: block;
+    justify-content: space-between; 
+  }
+}

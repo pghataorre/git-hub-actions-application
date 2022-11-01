@@ -1,5 +1,5 @@
 import React from 'react'
-import FixturesByTournament from '../components/FixturesByTournament/FixturesByTournament';
+import FixturesByTournament from '../components/Fixtures/FixturesByTournament/FixturesByTournament';
 
 const Fixtures = () => {
   return (

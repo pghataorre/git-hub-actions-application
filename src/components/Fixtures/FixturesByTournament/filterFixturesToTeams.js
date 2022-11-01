@@ -1,4 +1,4 @@
-import config from '../../config/config';
+import config from '../../../config/config';
 
 const filterFixturesToTeams = (fixtures, teams) => {
 	const fixturesFilteredData = fixtures.Items.filter((fixtureItem) => {
@@ -18,7 +18,6 @@ const filterFixturesToTeams = (fixtures, teams) => {
 			fixtureDateString ===
 			todaysDate.toLocaleDateString(config.dateLocaleString)
 		) {
-			//if (fixtureDateString === '27/10/2022') {
 			const homeTeam = teams.Items.filter((teamsItem) => {
 				return fixtureItem.homeTeamId === teamsItem.ID
 					? teamsItem.teamName
@@ -37,7 +36,6 @@ const filterFixturesToTeams = (fixtures, teams) => {
 
 			fixtureItem.gameInPlay =
 				currentTime > fixtureTime && currentTime <= gameEndTime;
-
 			return fixtureItem;
 		} else {
 			return null;
