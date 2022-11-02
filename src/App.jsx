@@ -3,7 +3,7 @@ import { Routes, Route } from "react-router-dom";
 import './App.css';
 import Default from "./pages/Default";
 import Teams from "./pages/Teams";
-import AddManager from "./pages/AddManager";
+import AddManager from "./pages/permy";
 import AddTournament from "./pages/AddTournament";
 import AddTeam from "./pages/AddTeam";
 import AddFixtures from "./pages/AddFixtures";
