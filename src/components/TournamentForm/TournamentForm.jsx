@@ -10,7 +10,6 @@ const TournamentForm = () => {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-
     try {
       const body = {
         tournamentName: tournamentName.current.value || '-1'

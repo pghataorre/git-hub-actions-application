@@ -1,7 +1,7 @@
 import config from '../config/config';
 
 const addTournament = async (body) => {
-	return await fetch(`${config.apiUrl}/tournaments/createTournament`, {
+	return await fetch(`${config.apiUrl}/tournaments`, {
 		method: 'POST',
 		headers: {
 			'Content-type': 'application/json; charset=UTF-8',
