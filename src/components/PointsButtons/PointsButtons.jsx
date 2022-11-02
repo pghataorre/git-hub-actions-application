@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import pointApi from './pointsApi';
+import pointsApi from './pointsApi';
 import './PointsButtons.css';
 import config from '../../config/config';
 
@@ -8,7 +8,7 @@ const PointsButtons = ({showButtons, teamId, hightLightChange}) => {
 
   const handleClick = async (state, teamId) => {
     disableButton();
-    await pointApi(state, teamId);
+    await pointsApi(state, teamId);
   }
 
   const disableButton = () => {

@@ -11,7 +11,7 @@ import Managers from "./pages/Managers";
 import Fixtures from  "./pages/Fixtures";
 import EditFixture from "./pages/EditFixture";
 import EditSingleFixture from "./pages/EditSingleFixture";
-import Addpoints from "./pages/AddPoints";
+import AddPoints from "./pages/AddPoints";
 import Header from "./components/Header/Header";
 import { TeamsContext } from "./context/teamsContext";
 import FixturesProvider from "./context/FixturesProvider/FixturesProvider";
@@ -79,7 +79,7 @@ const App = () => {
             <Route path="*" element={<p>Sorry this page isn't avaialable</p>} />
             <Route path="/teams" element={<Teams />} />
             <Route path="/managers" element={<Managers />} />
-            <Route path="/addpoints" element={<Addpoints />} />
+            <Route path="/addpoints" element={<AddPoints />} />
             <Route path="/addmanager" element={<AddManager />} />
             <Route path="/addtournament" element={<AddTournament />} />
             <Route path="/addteam" element={<AddTeam />} />
