@@ -26,22 +26,25 @@ const TeamListing = ({teams, showButtons, dataLoaded})  => {
   if (!dataLoaded) return (<p>.... Loading</p>);
   const teamList = teams.Items.map((team) => {
     const keyValue = showButtons ? `team-list-${team.ID}` : `team-points-list-${team.ID}`;
-
     return (
-        <tr key={keyValue} className='teams-row'>
-          <td className="team-shield"><img src={`/images/${team.logo}`} alt="team shields"/></td>
-          <td className="team-name">
-            <div>{team.teamName}</div> 
-            { showButtons && (<PointsButtons 
-              showButtons={showButtons} 
-              teamId={team.ID}
-            />)}
-          </td>
-          <td className="played">{team.results[0].played}</td>
-          <td className="points">{team.results[0].points}</td>
-        </tr>
-      )
-    });
+      <tr key={keyValue} className='teams-row'>
+        <td className="team-shield"><img src={`/images/${team.logo}`} alt="team shields"/></td>
+        <td className="team-name">
+          <div>{team.teamName}</div> 
+          { showButtons && (<PointsButtons 
+            showButtons={showButtons} 
+            teamId={team.ID}
+          />)}
+        </td>
+        <td className="won">{team.results[0].won}</td>
+        <td className="won">{team.results[0].draw}</td>
+        <td className="won">{team.results[0].lost}</td>
+        <td className="played">{team.results[0].played}</td>
+        <td className="points">{team.results[0].points}</td>
+
+      </tr>
+    )
+  });
 
   return (
     <table className="full-team-list">
@@ -49,6 +52,9 @@ const TeamListing = ({teams, showButtons, dataLoaded})  => {
         <tr>
           <td className="team-shield">Teams</td>
           <td></td>
+          <td className="won">W</td>
+          <td className="won">D</td>
+          <td className="loss">L</td>
           <td className="played">Pld</td>
           <td className="points">Pts</td>
           <td></td>

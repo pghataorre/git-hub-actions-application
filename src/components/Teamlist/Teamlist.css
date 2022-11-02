@@ -19,6 +19,9 @@ tr td.team-shield {
   width: 80px;
 }
 
+tr td.won,
+tr td.draw,
+tr td.loss,
 tr td.points,
 tr td.played {
   width: 50px;
@@ -30,6 +33,9 @@ tr td.points {
 }
 
 @media only screen and (max-width: 768px) {
+  tr td.won,
+  tr td.draw,
+  tr td.loss,
   tr td.played {
     display: none;
   }
