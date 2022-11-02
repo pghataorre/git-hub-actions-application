@@ -3,7 +3,6 @@ import { Routes, Route } from "react-router-dom";
 import './App.css';
 import Default from "./pages/Default";
 import Teams from "./pages/Teams";
-import AddManager from "./pages/AddManager";
 import AddTournament from "./pages/AddTournament";
 import AddTeam from "./pages/AddTeam";
 import AddFixtures from "./pages/AddFixtures";
@@ -80,7 +79,7 @@ const App = () => {
             <Route path="/teams" element={<Teams />} />
             <Route path="/managers" element={<Managers />} />
             <Route path="/addpoints" element={<AddPoints />} />
-            <Route path="/addmanager" element={<AddManager />} />
+            <Route path="/addmanager" element={<AddManagerPage />} />
             <Route path="/addtournament" element={<AddTournament />} />
             <Route path="/addteam" element={<AddTeam />} />
             <Route path="/fixtures" element={<Fixtures />} />
